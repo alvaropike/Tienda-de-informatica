@@ -1,6 +1,6 @@
 # Tienda-de-informatica
 
-holaaazzz
+holaaazzzfdfg
 PHP
 FICHEROS,pdf,xml,json
 BBDD
