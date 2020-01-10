@@ -4,7 +4,7 @@ class ControladorBD{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $dbname = "ejemplo";
+    private $dbname = "tienda";
     private $server ="mysql";
 
     private $bd;

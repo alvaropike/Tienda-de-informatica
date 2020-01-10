@@ -23,50 +23,31 @@ class ControladorDescarga{
         return self::$instancia;
     }
 
-    public function descargarTXT()
-    {
-        $this->fichero = "alumnado.txt";
-        header("Content-Type: application/octet-stream");
-        header("Content-Disposition: attachment; filename=" . $this->fichero . ""); //archivo de salida
-        $controlador = ControladorAlumno::getControlador();
-        $lista = $controlador->listarAlumnos("", "");
-        // Si hay filas (no nulo), pues mostramos la tabla
-        if (!is_null($lista) && count($lista) > 0) {
-            foreach ($lista as &$alumno) {
-                echo "DNI: " . $alumno->getDni() . " -- Nombre: " . $alumno->getNombre() . "  -- Email: " . $alumno->getEmail() .
-                    " -- Idioma: " . $alumno->getIdioma() . " -- Matricula: " . $alumno->getMatricula() . " -- Lenguaje: " . $alumno->getLenguaje() .
-                    " -- Fecha: " . $alumno->getFecha() . "\r\n";
-            }
-        } else {
-            echo "No se ha encontrado datos de alumnos";
-        }
-    }
+    // public function descargarJSON()
+    // {
+    //     $this->fichero = "alumnado.json";
+    //     header("Content-Type: application/octet-stream");
+    //     header('Content-type: application/json');
+    //     //header("Content-Disposition: attachment; filename=" . $this->fichero . ""); //archivo de salida
+    //     $controlador = ControladorAlumno::getControlador();
+    //     $lista = $controlador->listarAlumnos("", "");
+    //     $sal = [];
+    //     foreach ($lista as $al) {
+    //         $sal[] = $this->json_encode_private($al);
+    //     }
+    //     echo json_encode($sal);
+    // }
 
-    public function descargarJSON()
-    {
-        $this->fichero = "alumnado.json";
-        header("Content-Type: application/octet-stream");
-        header('Content-type: application/json');
-        //header("Content-Disposition: attachment; filename=" . $this->fichero . ""); //archivo de salida
-        $controlador = ControladorAlumno::getControlador();
-        $lista = $controlador->listarAlumnos("", "");
-        $sal = [];
-        foreach ($lista as $al) {
-            $sal[] = $this->json_encode_private($al);
-        }
-        echo json_encode($sal);
-    }
-
-    private function json_encode_private($object)
-    {
-        $public = [];
-        $reflection = new ReflectionClass($object);
-        foreach ($reflection->getProperties() as $property) {
-            $property->setAccessible(true);
-            $public[$property->getName()] = $property->getValue($object);
-        }
-        return json_encode($public);
-    }
+    // private function json_encode_private($object)
+    // {
+    //     $public = [];
+    //     $reflection = new ReflectionClass($object);
+    //     foreach ($reflection->getProperties() as $property) {
+    //         $property->setAccessible(true);
+    //         $public[$property->getName()] = $property->getValue($object);
+    //     }
+    //     return json_encode($public);
+    // }
 
     public function descargarXML()
     {
@@ -109,12 +90,13 @@ class ControladorDescarga{
             $sal.="<thead>";
             $sal.="<tr>";
             $sal.="<th>Nombre</th>";
-            $sal.="<th>Raza</th>";
-            $sal.="<th>Ki</th>";
-            $sal.="<th>Transformación</th>";
-            $sal.="<th>Ataque</th>";
-            $sal.="<th>Planeta</th>";
-            $sal.="<th>Imagen</th>";
+            $sal.="<th>Apellido</th>";
+            $sal.="<th>Email</th>";
+            $sal.="<th>Password</th>";
+            $sal.="<th>Admin</th>";
+            $sal.="<th>Fecha alta</th>";
+            $sal.="<th>telefono</th>";
+            $sal.="<th>Foto</th>";
             $sal.="</tr>";
             $sal.="</thead>";
             $sal.="<tbody>";
@@ -123,14 +105,14 @@ class ControladorDescarga{
                 // Pintamos cada fila
                 $sal.="<tr>";
                 $sal.="<td>" . $alumno->getNombre() . "</td>";
-                $sal.="<td>" . $alumno->getRaza() . "</td>";
-                $sal.="<td>" . $alumno->getKi() . "</td>";
-                //$sal.="<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
-                $sal.="<td>" . $alumno->getTransformacion() . "</td>";
-                $sal.="<td>" . $alumno->getAtaque() . "</td>";
-                $sal.="<td>" . $alumno->getPlaneta() . "</td>";
+                $sal.="<td>" . $alumno->getApellido() . "</td>";
+                $sal.="<td>" . $alumno->getEmail() . "</td>";
+                $sal.="<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
+                $sal.="<td>" . $alumno->getAdmin() . "</td>";
+                $sal.="<td>" . $alumno->getF_alta() . "</td>";
+                $sal.="<td>" . $alumno->gettelefono() . "</td>";
                 // Para sacar una imagen hay que decirle el directprio real donde está
-                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/Dragonball/imagenes/".$alumno->getImagen()."'  style='max-width: 12mm; max-height: 12mm'></td>";
+                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/Dragonball/imagenes/".$alumno->getFoto()."'  style='max-width: 12mm; max-height: 12mm'></td>";
                 $sal.="</tr>";
             }
             $sal.="</tbody>";
@@ -155,12 +137,13 @@ class ControladorDescarga{
             $sal.="<thead>";
             $sal.="<tr>";
             $sal.="<th>Nombre</th>";
-            $sal.="<th>Raza</th>";
-            $sal.="<th>Ki</th>";
-            $sal.="<th>Transformación</th>";
-            $sal.="<th>Ataque</th>";
-            $sal.="<th>Planeta</th>";
-            $sal.="<th>Imagen</th>";
+            $sal.="<th>Apellido</th>";
+            $sal.="<th>Email</th>";
+            $sal.="<th>Password</th>";
+            $sal.="<th>Admin</th>";
+            $sal.="<th>Fecha alta</th>";
+            $sal.="<th>telefono</th>";
+            $sal.="<th>Foto</th>";
             $sal.="</tr>";
             $sal.="</thead>";
             $sal.="<tbody>";
@@ -169,14 +152,14 @@ class ControladorDescarga{
                 // Pintamos cada fila
                 $sal.="<tr>";
                 $sal.="<td>" . $alumno->getNombre() . "</td>";
-                $sal.="<td>" . $alumno->getRaza() . "</td>";
-                $sal.="<td>" . $alumno->getKi() . "</td>";
-                //$sal.="<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
-                $sal.="<td>" . $alumno->getTransformacion() . "</td>";
-                $sal.="<td>" . $alumno->getAtaque() . "</td>";
-                $sal.="<td>" . $alumno->getPlaneta() . "</td>";
+                $sal.="<td>" . $alumno->getApellido() . "</td>";
+                $sal.="<td>" . $alumno->getEmail() . "</td>";
+                $sal.="<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
+                $sal.="<td>" . $alumno->getAdmin() . "</td>";
+                $sal.="<td>" . $alumno->getF_alta() . "</td>";
+                $sal.="<td>" . $alumno->gettelefono() . "</td>";
                 // Para sacar una imagen hay que decirle el directprio real donde está
-                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/Dragonball/imagenes/".$alumno->getImagen()."'  style='max-width: 12mm; max-height: 12mm'></td>";
+                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/Dragonball/imagenes/".$alumno->getFoto()."'  style='max-width: 12mm; max-height: 12mm'></td>";
                 $sal.="</tr>";
             }
             $sal.="</tbody>";
