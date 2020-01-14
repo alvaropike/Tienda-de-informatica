@@ -17,7 +17,7 @@ if ( !defined('UTILITY_PATH') )
     define('UTILITY_PATH', ROOT_PATH."utilidades/");
 
 if ( !defined('IMAGE_PATH') )
-    define('IMAGE_PATH', ROOT_PATH."imagenes/");
+    define('IMAGE_PATH', ROOT_PATH."imagenes/usuarios/");
 
     if ( !defined('VENDOR_PATH') )
     define('VENDOR_PATH', ROOT_PATH."vendor/");

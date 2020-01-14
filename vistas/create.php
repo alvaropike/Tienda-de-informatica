@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     // Procesamos el email
     $emailVal = filtrado($_POST["email"]);
     if(empty($emailVal)){
-        $emailsErr = "Por favor introduzca email válido.";
+        $emailErr = "Por favor introduzca email válido.";
     } else{
         $email= $emailVal;
     }

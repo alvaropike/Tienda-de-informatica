@@ -51,7 +51,7 @@ class ControladorImagen {
         // Procesamos la imagen
         $extension = explode("/", $_FILES['foto']['type']);
         $nombreFoto = md5($_FILES['foto']['tmp_name'] . $_FILES['foto']['name']) . "." . $extension[1];
-        if (!move_uploaded_file($_FILES['foto']['tmp_name'], ROOT_PATH . "/fotos/$nombreFoto")) {
+        if (!move_uploaded_file($_FILES['foto']['tmp_name'], ROOT_PATH . "/imagenes/usuarios/$nombreFoto")) {
             //header("location: error.php");
             //exit();
             $nombreFoto = $fotoAnterior;

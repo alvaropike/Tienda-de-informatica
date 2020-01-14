@@ -1,14 +1,14 @@
 <?php
-      error_reporting(E_ALL & ~E_NOTICE);
-      session_start();
-      if(isset($_SESSION['USUARIO']['email'])){
-        // Si es admin muestra la pagina
+//       error_reporting(E_ALL & ~E_NOTICE);
+//       session_start();
+//       if(isset($_SESSION['USUARIO']['email'])){
+//         // Si es admin muestra la pagina
 
-    } else{
-        // Si no es admin muestra este error
-        echo "ERROR: No tienes permiso para acceder aquí";
-        exit();
-  }
+//     } else{
+//         // Si no es admin muestra este error
+//         echo "ERROR: No tienes permiso para acceder aquí";
+//         exit();
+//   }
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH."ControladorAlumno.php";
@@ -36,7 +36,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         //Se ha borrado y volvemos a la página principal
        // Debemos borrar la foto del alumno
        $controlador = ControladorImagen::getControlador();
-       if($controlador->eliminarImagen($alumno->getImagen())){
+       if($controlador->eliminarImagen($alumno->getFoto())){
             header("location: ../index.php");
             exit();
        }else{
@@ -64,10 +64,10 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                 <!-- Muestro los datos del alumno-->
                 <a href="../utilidades/descargar.php?opcion=PDFAlumno&id=<?php echo $_GET["id"] ?>" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
                 <table>
-                    <tr>
+                <tr>
                         <td class="align-left">
                             <label>Fotografía</label><br>
-                            <img src='<?php echo "../imagenes/" . $alumno->getFoto() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
+                            <img src='<?php echo "../imagenes/usuarios/" . $alumno->getFoto() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
                         </td>
                     </tr>
                 </table>
@@ -85,7 +85,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                     </div>
                     <div class="form-group">
                         <label>password</label>
-                            <p class="form-control-static"><?php echo $alumno->getPassword(); ?></p>
+                            <p class="form-control-static"><?php echo str_repeat("*",strlen($alumno->getPassword())); ?></p>
                     </div>
                     <div class="form-group">
                         <label>Admin</label>

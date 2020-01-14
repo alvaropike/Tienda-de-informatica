@@ -1,24 +1,23 @@
 <?php
-      error_reporting(E_ALL & ~E_NOTICE);
-      session_start();
-      if(isset($_SESSION['USUARIO']['email'])){
-        // Si es admin muestra la pagina
+//       error_reporting(E_ALL & ~E_NOTICE);
+//       session_start();
+//       if(isset($_SESSION['USUARIO']['email'])){
+//         // Si es admin muestra la pagina
 
-    } else{
-        // Si no es admin muestra este error
-        echo "ERROR: No tienes permiso para acceder aquí";
-        exit();
-  }
+//     } else{
+//         // Si no es admin muestra este error
+//         echo "ERROR: No tienes permiso para acceder aquí";
+//         exit();
+//   }
 // Incluimos el controlador a los objetos a usar
-require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/Dragonball/dirs.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH."ControladorAlumno.php";
 require_once CONTROLLER_PATH."ControladorImagen.php";
 require_once UTILITY_PATH."funciones.php";
  
 // Variables temporales
-$nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = "";
+$nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = $imagenAnterior = "";
 $nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $fotoErr = $telefonoErr = $f_alta = "";
-$imagenAnterior = "";
 $errores=[];
 // Procesamos la información obtenida por el get
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -52,7 +51,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Procesamos el email
     $emailVal = filtrado($_POST["email"]);
     if(empty($emailVal)){
-        $emailsErr = "Por favor introduzca email válido.";
+        $emailErr = "Por favor introduzca email válido.";
     } else{
         $email= $emailVal;
         $errores[]= $emailErr;
@@ -64,6 +63,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $passwordErr = "Por favor introduzca password válido y que sea mayor que 5 caracteres.";
     } else{
         $password= hash('sha256',$passwordVal);
+        // $password= $passwordVal;
         $errores[]= $passwordErr;
     }
 
@@ -105,7 +105,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             $mod = false;
             $fotoErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
         }
-
         // Si todo es correcto, mod = true
         if($mod){
             // salvamos la imagen
@@ -136,7 +135,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
      empty($adminErr) && empty($fotoErr) && empty($telefonoErr) && empty($f_altaErr)){
      // creamos el controlador de alumnado
      $controlador = ControladorAlumno::getControlador();
-     $estado = $controlador->almacenarAlumno($nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta);
+     $estado = $controlador->actualizarAlumno($id, $nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta);
      if($estado){
         $errores=[];
          //El registro se ha lamacenado corectamente
@@ -244,12 +243,13 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                          <div class="form-group <?php echo (!empty($fotoErr)) ? 'error: ' : ''; ?>">
                         <label>Fotografía</label>
                         <!-- Solo acepto imagenes jpg -->
-                        <input type="file" required name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    
+                        <input type="file" name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    
                         <span class="help-block"><?php echo $fotoErr;?></span>    
                         </div>
                         <!-- Botones --> 
-                         <button type="submit" name= "aceptar" value="aceptar" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-save"></span>  Aceptar</button>
-                         <button type="reset" value="reset" class="btn btn-info"> <span class="glyphicon glyphicon-repeat"></span>  Limpiar</button>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                        <input type="hidden" name="imagenAnterior" value="<?php echo $imagenAnterior; ?>"/>
+                        <button type="submit" value="aceptar" class="btn btn-warning"> <span class="glyphicon glyphicon-refresh"></span>  Modificar</button>
                         <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                     </form>
                 </div>

@@ -76,8 +76,6 @@ class ControladorAcceso {
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";
-                //<!-- Pie de la página web -->
-                require_once VIEW_PATH."pie.php";
                 exit();
             }
     }
