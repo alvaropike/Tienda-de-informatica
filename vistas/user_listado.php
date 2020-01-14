@@ -43,7 +43,7 @@
             $enlaces = ( isset($_GET['enlaces']) ) ? $_GET['enlaces'] : 10;
 
              // Consulta a realizar -- esto lo cambiaré para la semana que viene
-             $consulta = "SELECT * FROM luchadores WHERE nombre LIKE :nombre order by ki desc";
+             $consulta = "SELECT * FROM usuario WHERE nombre LIKE :nombre";
              $parametros = array(':nombre' => "%".$nombre."%");
              $limite = 5; // Limite del paginador
              $paginador  = new Paginador($consulta, $parametros, $limite);

@@ -50,7 +50,7 @@
             //$lista = $controlador->listarAlumnos($nombre, $dni); //-- > Lo hará el paginador
 
              // Consulta a realizar -- esto lo cambiaré para la semana que viene
-             $consulta = "SELECT * FROM luchadores WHERE nombre LIKE :nombre order by ki desc";
+             $consulta = "SELECT * FROM usuario WHERE nombre LIKE :nombre";
              $parametros = array(':nombre' => "%".$nombre."%");
              $limite = 3; // Limite del paginador
              $paginador  = new Paginador($consulta, $parametros, $limite);
@@ -64,13 +64,14 @@
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th>Nombre</th>";
-                echo "<th>Raza</th>";
-                echo "<th>Ki</th>";
-                echo "<th>Transformacion</th>";
-                echo "<th>Ataque</th>";
-                echo "<th>Planeta</th>";
-                echo "<th>Imagen</th>";
-                echo "<th>Acción</th>";
+                echo "<th>Apellido</th>";
+                echo "<th>Email</th>";
+                echo "<th>Password</th>";
+                echo "<th>Admin</th>";
+                echo "<th>Telefono</th>";
+                echo "<th>F_alta</th>";
+                echo "<th>Foto</th>";
+                echo "<th>Acciones</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -78,17 +79,18 @@
                 foreach ($resultados->datos as $a) {
                 //foreach ($lista as $alumno) {
                     // Esto lo hago para no cambiaros el resto de codigo, si no podría usar a directamente
-                    $alumno = new Alumno($a->id, $a->nombre, $a->raza, $a->ki, $a->transformacion, $a->ataque, $a->planeta, $a->imagen);
+                    $alumno = new Usuario($a->id, $a->nombre, $a->apellido, $a->email, $a->password, $a->admin, $a->foto, $a->telefono, $a->f_alta);
                     // Pintamos cada fila
                     echo "<tr>";
                     echo "<td>" . $alumno->getNombre() . "</td>";
-                    echo "<td>" . $alumno->getRaza() . "</td>";
+                    echo "<td>" . $alumno->getApellido() . "</td>";
                     // echo "<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
-                    echo "<td>" . $alumno->getKi() . "</td>";
-                    echo "<td>" . $alumno->getTransformacion() . "</td>";
-                    echo "<td>" . $alumno->getAtaque() . "</td>";
-                    echo "<td>" . $alumno->getPlaneta() . "</td>";
-                    echo "<td><img src='imagenes/".$alumno->getImagen()."' width='48px' height='48px'></td>";
+                    echo "<td>" . $alumno->getEmail() . "</td>";
+                    echo "<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
+                    echo "<td>" . $alumno->getAdmin() . "</td>";
+                    echo "<td>" . $alumno->getTelefono() . "</td>";
+                    echo "<td>" . $alumno->getF_alta() . "</td>";
+                    echo "<td><img src='imagenes/usuarios/".$alumno->getFoto()."' width='48px' height='48px'></td>";
                     echo "<td>";
                     echo "<a href='vistas/read.php?id=" . encode($alumno->getId()) . "' title='Ver Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                     echo "<a href='vistas/update.php?id=" . encode($alumno->getId()) . "' title='Actualizar Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";

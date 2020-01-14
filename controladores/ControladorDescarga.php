@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/AppWeb/Dragonball/dirs.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH . "ControladorAlumno.php";
 require_once MODEL_PATH . "Alumno.php";
 require_once VENDOR_PATH . "autoload.php";

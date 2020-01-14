@@ -1,7 +1,7 @@
 <?php
 
 // Incluimos el controlador a los objetos a usar
-require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/Dragonball/dirs.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH."ControladorAlumno.php";
 require_once UTILITY_PATH."funciones.php";
 
@@ -36,7 +36,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     <tr>
                         <td class="align-left">
                             <label>Fotografía</label><br>
-                            <img src='<?php echo "../imagenes/" . $alumno->getImagen() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
+                            <img src='<?php echo "../imagenes/usuarios/" . $alumno->getFoto() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
                         </td>
                     </tr>
                 </table>
@@ -45,29 +45,31 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <p class="form-control-static"><?php echo $alumno->getNombre(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Raza</label>
-                            <p class="form-control-static"><?php echo $alumno->getRaza(); ?></p>
+                        <label>Apellido</label>
+                            <p class="form-control-static"><?php echo $alumno->getApellido(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Ki</label>
-                            <p class="form-control-static"><?php echo $alumno->getKi(); ?></p>
+                        <label>email</label>
+                            <p class="form-control-static"><?php echo $alumno->getEmail(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Transformacion</label>
-                            <p class="form-control-static"><?php echo $alumno->getTransformacion(); ?></p>
+                        <label>password</label>
+                            <p class="form-control-static"><?php echo str_repeat("*",strlen($alumno->getPassword())); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Ataque</label>
-                            <p class="form-control-static"><?php echo $alumno->getAtaque(); ?></p>
+                        <label>Admin</label>
+                            <p class="form-control-static"><?php echo $alumno->getAdmin(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Planeta</label>
-                            <p class="form-control-static"><?php echo $alumno->getPlaneta(); ?></p>
+                        <label>Telefono</label><
+                            <p class="form-control-static"><?php echo $alumno->getTelefono(); ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de alta</label>
+                            <p class="form-control-static"><?php echo $alumno->getF_alta(); ?></p>
                     </div>
             </div>
         </div>        
     </div>
 </div>
 <br><br><br>
-<!-- Pie de la página web -->
-<?php require_once VIEW_PATH."pie.php"; ?>

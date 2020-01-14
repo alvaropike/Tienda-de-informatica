@@ -16,8 +16,8 @@ require_once CONTROLLER_PATH."ControladorImagen.php";
 require_once UTILITY_PATH."funciones.php";
  
 // Variables temporales
-$nombre = $raza = $ki = $transformacion = $ataque = $planeta = $imagen ="";
-$nombreErr = $razaErr = $kiErr = $transformacionErr = $ataqueErr= $planetaErr = $imagenErr= "";
+$nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = "";
+$nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $fotoErr = $telefonoErr = $f_alta = "";
 $imagenAnterior = "";
 $errores=[];
 // Procesamos la información obtenida por el get
@@ -25,195 +25,134 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Get hidden input value
     $id = $_POST["id"];
     
-   // Procesamos el dni
-//    $dniVal = filtrado($_POST["dni"]);
-//    if(empty($dniVal)){
-//        $dniErr = "Por favor introduzca un DNI válido.";
-//    }elseif(!filter_var($dniVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[0-9]{8}[A-Za-z]{1}/")))){
-//            $dniErr = "Por favor introduzca un DNI con formato válido XXXXXXXXL, donde X es un dígito y L una letra.";
-//    } else{
-//        $dni= $dniVal;
-//    }
-   
-   // Procesamos el nombre
-   $nombreVal = filtrado(($_POST["nombre"]));
-   if(empty($nombreVal)){
-       $nombreErr = "Por favor introduzca un nombre válido con solo carávteres alfabéticos.";
-       // Un ejemplo de validar expresiones regulares directamente desde PHP
-   } elseif(!preg_match("/([^\s][A-zÀ-ž\s]+$)/", $nombreVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
-       $nombreErr = "Por favor introduzca un nombre válido con solo carávteres alfabéticos.";
-       $errores[]= $nombreErr;
-   } else{
-       $nombre= $nombreVal;
-   }
-   
-   // Procesamos el email
-//    $emailVal = filtrado($_POST["email"]);
-//    if(empty($emailVal)){
-//        $emailsErr = "Por favor introduzca email válido.";
-//        // Un ejemplo de validar expresiones regulares directamente desde PHP
-//    //} elseif(!filter_var($apellidosVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-//    //    $apellidosErr = "Por favor introduzca apellidos válidos.";
-//    } else{
-//        $email= $emailVal;
-//    }
-
-   // No lo procesamos porque así lo hemos decidido
-   // Procesamos el password
-//    $passwordVal = filtrado($_POST["password"]);
-//    if(empty($passwordVal) || strlen($passwordVal)<5){
-//        $passwordErr = "Por favor introduzca password válido y que sea mayor que 5 caracteres.";
-//    } else{
-//        // No hacemos el has que si no cambiamos la contraseña
-//        $password= $passwordVal;
-//    }
-
-//    // Procsamos idiomas
-//     if(isset($_POST["idioma"])){
-//         $idioma = filtrado(implode(", ", $_POST["idioma"]));
-//     }else{
-//         $idiomaErr = "Debe elegir al menos un idioma";
-//     }
-
-//     // Procesamos matrícula
-//     if(isset($_POST["matricula"])){
-//         $matricula = filtrado($_POST["matricula"]);
-//     }else{
-//         $matriculaErr = "Debe elegir al menos una matricula";
-//     }
-
-//     // Procesamos lenguaje
-//     $lenguaje = filtrado($_POST["lenguaje"]);
-
-    // // Procesamos fecha
-    // $fecha = date("d-m-Y", strtotime(filtrado($_POST["fecha"])));
-    // $hoy = date("d-m-Y", time());
-
-    // // Comparamos las fechas
-    // $fecha_mat = new DateTime($fecha);
-    // $fecha_hoy = new DateTime($hoy);
-    // $interval = $fecha_hoy->diff($fecha_mat);
-
-    // if($interval->format('%R%a días')>0){
-    //     $fechaErr = "La fecha no puede ser superior a la fecha actual";
-    //     $errores[]=  $fechaErr;
-
-    // }else{
-    //     $fecha = date("d/m/Y",strtotime($fecha));
-    // }
-
-    // Procsamos raza
-    if(isset($_POST["raza"])){
-        $raza = filtrado($_POST["raza"]);
-    }else{
-        $razaErr = "Debe elegir al menos una raza";
-        $errores[]=  $razaErr;
-    }
-
-    $kiVal = filtrado(($_POST["ki"]));
-    if(empty($kiVal)){
-        $kiErr = "Por favor introduzca un ki válido con solo carávteres numericos.";
+    // Procesamos el nombre
+    $nombreVal = filtrado(($_POST["nombre"]));
+    if(empty($nombreVal)){
+        $nombreErr = "Por favor introduzca un nombre válido con solo carávteres alfabéticos.";
         // Un ejemplo de validar expresiones regulares directamente desde PHP
-    } elseif(!preg_match("/([0-9])/", $kiVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
-        $kiErr = "Por favor introduzca un ki válido con solo carávteres numericos.";
-        $errores[]= $kiErr;
+    } elseif(!preg_match("/([^\s][A-zÀ-ž\s]+$)/", $nombreVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
+        $nombreErr = "Por favor introduzca un nombre válido con solo carávteres alfabéticos.";
+        $errores[]= $nombreErr;
     } else{
-        $ki= $kiVal;
+        $nombre= $nombreVal;
     }
 
-    // Procsamos transformacion
-    if(isset($_POST["transformacion"])){
-        $transformacion = filtrado($_POST["transformacion"]);
-    }else{
-        $transformacionErr = "Debe seleccionar la transformacion";
-        $errores[]=  $transformacionErr;
-    }
-
-    // Procsamos ataque
-    if(isset($_POST["ataque"])){
-        $ataque = filtrado($_POST["ataque"]);
-    }else{
-        $ataqueErr = "Debe seleccionar el ataque";
-        $errores[]=  $ataqueErr;
-    }    
-
-    $planetaVal = filtrado(($_POST["planeta"]));
-    if(empty($planetaVal)){
-        $planetaErr = "Por favor introduzca un planeta válido con LLLNN.";
+    // Procesamos el apellido
+    $apellidoVal = filtrado(($_POST["apellido"]));
+    if(empty($apellidoVal)){
+        $apellidoErr = "Por favor introduzca un apellido válido con solo carávteres alfabéticos.";
         // Un ejemplo de validar expresiones regulares directamente desde PHP
-    } elseif(!preg_match("/([a-zA-Z]{3}[0-9]{2})/", $planetaVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
-        $planetaErr = "Por favor introduzca un planeta válido con LLLNN.";
-        $errores[]= $planetaErr;
+    } elseif(!preg_match("/([^\s][A-zÀ-ž\s]+$)/", $apellidoVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
+        $apellidoErr = "Por favor introduzca un apellido válido con solo carávteres alfabéticos.";
+        $errores[]= $apellidoErr;
     } else{
-        $planeta= $planetaVal;
+        $apellido= $apellidoVal;
+    }
+
+    // Procesamos el email
+    $emailVal = filtrado($_POST["email"]);
+    if(empty($emailVal)){
+        $emailsErr = "Por favor introduzca email válido.";
+    } else{
+        $email= $emailVal;
+        $errores[]= $emailErr;
+    }
+
+    // Procesamos el password
+    $passwordVal = filtrado($_POST["password"]);
+    if(empty($passwordVal) || strlen($passwordVal)<5){
+        $passwordErr = "Por favor introduzca password válido y que sea mayor que 5 caracteres.";
+    } else{
+        $password= hash('sha256',$passwordVal);
+        $errores[]= $passwordErr;
+    }
+
+    // Procsamos admin
+    if(isset($_POST["admin"])){
+        $admin = filtrado($_POST["admin"]);
+    }else{
+        $adminErr = "Debe seleccionar si es admin o no";
+        $errores[]= $adminErr;
+    }
+
+    // Procesamos el telefono
+    $telefonoVal = filtrado(($_POST["telefono"]));
+    if(empty($telefonoVal)){
+        $telefonoErr = "Por favor introduzca un telefono válido con solo carávteres numericos.";
+        // Un ejemplo de validar expresiones regulares directamente desde PHP
+    } elseif(!preg_match("/([0-9]{9})/", $telefonoVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
+        $telefonoErr = "Por favor introduzca un telefono válido con solo carávteres numericos.";
+        $errores[]= $telefonoErr;
+    } else{
+        $telefono= $telefonoVal;
     }
 
     // Procesamos la imagen
     // Si nos ha llegado algo mayor que cer
-    if($_FILES['imagen']['size']>0 && count($errores)==0){
-        $propiedades = explode("/", $_FILES['imagen']['type']);
+    if($_FILES['foto']['size']>0 && count($errores)==0){
+        $propiedades = explode("/", $_FILES['foto']['type']);
         $extension = $propiedades[1];
         $tam_max = 50000; // 50 KBytes
-        $tam = $_FILES['imagen']['size'];
+        $tam = $_FILES['foto']['size'];
         $mod = true;
         // Si no coicide la extensión
         if($extension != "png" && $extension != "jpeg"){
             $mod = false;
-            $imagenErr= "Formato debe ser jpg/png";
+            $fotoErr= "Formato debe ser jpg/png";
         }
         // si no tiene el tamaño
         if($tam>$tam_max){
             $mod = false;
-            $imagenErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
+            $fotoErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
         }
 
         // Si todo es correcto, mod = true
         if($mod){
             // salvamos la imagen
-            $imagen = md5($_FILES['imagen']['tmp_name'] . $_FILES['imagen']['name'].time()) . "." . $extension;
+            $foto = md5($_FILES['foto']['tmp_name'] . $_FILES['foto']['name'].time()) . "." . $extension;
             $controlador = ControladorImagen::getControlador();
-            if(!$controlador->salvarImagen($imagen)){
-                $imagenErr= "Error al procesar la imagen y subirla al servidor";
+            if(!$controlador->salvarImagen($foto)){
+                $fotoErr= "Error al procesar la foto y subirla al servidor";
             }
 
             // Borramos la antigua
             $imagenAnterior = trim($_POST["imagenAnterior"]);
-            if($imagenAnterior!=$imagen){
+            if($imagenAnterior!=$foto){
                 if(!$controlador->eliminarImagen($imagenAnterior)){
-                    $imagenErr= "Error al borrar la antigua imagen en el servidor";
+                    $fotoErr= "Error al borrar la antigua foto en el servidor";
                 }
             }
         }else{
         // Si no la hemos modificado
-            $imagen=trim($_POST["imagenAnterior"]);
+            $foto=trim($_POST["imagenAnterior"]);
         }
 
     }else{
-        $imagen=trim($_POST["imagenAnterior"]);
+        $foto=trim($_POST["imagenAnterior"]);
     }
     
      // Chequeamos los errores antes de insertar en la base de datos
-    if(empty($nombreErr) && empty($razaErr) && empty($kiErr) && empty($transformacionErr) && 
-        empty($ataqueErr) && empty($planetaErr) && empty($imagenErr)){
-        // creamos el controlador de alumnado
-        $controlador = ControladorAlumno::getControlador();
-        $estado = $controlador->actualizarAlumno($id, $nombre, $raza, $ki, $transformacion, $ataque, $planeta, $imagen);
-        if($estado){
-            $errores=[];
-            //El registro se ha lamacenado corectamente
-            //alerta("Alumno/a creado con éxito");
-            header("location: ../index.php");
-            exit();
-        }else{
-            header("location: error.php");
-            exit();
-        }
+     if(empty($nombreErr) && empty($apellidoErr) && empty($emailErr) && empty($passwordErr) && 
+     empty($adminErr) && empty($fotoErr) && empty($telefonoErr) && empty($f_altaErr)){
+     // creamos el controlador de alumnado
+     $controlador = ControladorAlumno::getControlador();
+     $estado = $controlador->almacenarAlumno($nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta);
+     if($estado){
+        $errores=[];
+         //El registro se ha lamacenado corectamente
+         //alerta("Alumno/a creado con éxito");
+         header("location: ../index.php");
+         exit();
+     }else{
+         header("location: error.php");
+         exit();
+     }
     }else{
         alerta("Hay errores al procesar el formulario revise los errores");
     }
 
 }
-    
+
     // Comprobamos que existe el id antes de ir más lejos
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         $id =  decode($_GET["id"]);
@@ -221,13 +160,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $alumno = $controlador->buscarAlumno($id);
         if (!is_null($alumno)) {
             $nombre = $alumno->getNombre();
-            $raza = $alumno->getRaza();
-            $ki = $alumno->getKi();
-            $transformacion = $alumno->getTransformacion();
-            $ataque = $alumno->getAtaque();
-            $planeta = $alumno->getPlaneta();
-            $imagen = $alumno->getImagen();
-            $imagenAnterior = $imagen;
+            $apellido = $alumno->getApellido();
+            $email = $alumno->getEmail();
+            $password = $alumno->getPassword();
+            $admin = $alumno->getAdmin();
+            $foto = $alumno->getFoto();
+            $telefono = $alumno->getTelefono();
+            $f_alta = $alumno->getF_alta();
+            $imagenAnterior = $foto;
         }
         else{
         // hay un error
@@ -253,6 +193,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <h2>Crear Alumno/a</h2>
                     </div>
                     <p>Por favor rellene este formulario para añadir un nuevo alumno/a a la base de datos de la clase.</p>
+                    <!-- $nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = ""; -->
                     <!-- Formulario-->
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post" enctype="multipart/form-data">
                         <!-- Nombre-->
@@ -264,55 +205,51 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                 minlength="3">
                             <span class="help-block"><?php echo $nombreErr;?></span>
                         </div>
-                        <!-- raza -->
-                        <div class="form-group <?php echo (!empty($razaErr)) ? 'error: ' : ''; ?>">
-                            <label>raza</label>
-                            <input type="radio" name="raza" value="saiyan" <?php echo (strstr($raza, 'saiyan')) ? 'checked' : ''; ?>>Saiyan</input>
-                            <input type="radio" name="raza" value="tericula" <?php echo (strstr($raza, 'tericula')) ? 'checked' : ''; ?>>Tericula</input>
-                            <input type="radio" name="raza" value="namekiano" <?php echo (strstr($raza, 'namekiano')) ? 'checked' : ''; ?>>Namekiano</input>
-                            <input type="radio" name="raza" value="otro" <?php echo (strstr($raza, 'otro')) ? 'checked' : ''; ?>>Otro</input><br>
-                            <span class="help-block"><?php echo $razaErr;?></span>
+                        <!-- apellido-->
+                        <div class="form-group <?php echo (!empty($apellidoErr)) ? 'error: ' : ''; ?>">
+                            <label>apellido</label>
+                            <input type="text" required name="apellido" class="form-control" value="<?php echo $apellido; ?>" 
+                                pattern="([^\s][A-zÀ-ž\s]+)"
+                                title="El apellido no puede contener números"
+                                minlength="3">
+                            <span class="help-block"><?php echo $apellidoErr;?></span>
                         </div>
-                        <!-- ki -->
-                        <div class="form-group <?php echo (!empty($kiErr)) ? 'error: ' : ''; ?>">
-                            <label>Ki</label>
-                            <input type="text" required name="ki" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $ki; ?>">
-                            <span class="help-block"><?php echo $kiErr;?></span>
+                        <!-- Email -->
+                        <div class="form-group <?php echo (!empty($emailErr)) ? 'error: ' : ''; ?>">
+                            <label>E-Mail</label>
+                            <input type="email" required name="email" class="form-control" value="<?php echo $email; ?>">
+                            <span class="help-block"><?php echo $emailErr;?></span>
                         </div>
-                        <!-- transformacion -->
-                        <div class="form-group <?php echo (!empty($transformacionErr)) ? 'error: ' : ''; ?>">
-                            <label>transformacion</label>
-                            <input type="radio" name="transformacion" value="si" <?php echo (strstr($transformacion, 'si')) ? 'checked' : ''; ?>>Si</input>
-                            <input type="radio" name="transformacion" value="no" <?php echo (strstr($transformacion, 'no')) ? 'checked' : ''; ?>>No</input><br>
-                            <span class="help-block"><?php echo $transformacionErr;?></span>
+                        <!-- Password -->
+                        <div class="form-group <?php echo (!empty($passwordErr)) ? 'error: ' : ''; ?>">
+                            <label>Contraseña</label>
+                            <input type="password" required name="password" class="form-control" value="<?php echo $password; ?>">
+                            <span class="help-block"><?php echo $passwordErr;?></span>
                         </div>
-                        <!-- ataque -->
-                        <div class="form-group <?php echo (!empty($ataqueErr)) ? 'error: ' : ''; ?>">
-                            <label>ataque</label>
-                            <input type="radio" name="ataque" value="todo" <?php echo (strstr($ataque, 'todo')) ? 'checked' : ''; ?>>Fisico - Onda de energia - Ultra instinto</input>
-                            <input type="radio" name="ataque" value="ninguno" <?php echo (strstr($ataque, 'ninuno')) ? 'checked' : ''; ?>>Ninguno</input><br>
-                            <span class="help-block"><?php echo $ataqueErr;?></span>
+                        <!-- Admin DESPLEGABLE-->
+                        <div class="form-group">
+                        <label>Admin</label>
+                            <select name="admin">
+                                <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
+                                <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
+                            </select>
                         </div>
-                        <!-- planeta -->
-                        <div class="form-group <?php echo (!empty($planetaErr)) ? 'error: ' : ''; ?>">
-                            <label>Planeta</label>
-                            <input type="text" required name="planeta" class="form-control" value="<?php echo $planeta; ?>" 
-                                pattern="([a-zA-Z]{3}[0-9]{2})"
-                                title="El patron es LLLNN"
-                                minlength="5">
-                            <span class="help-block"><?php echo $planetaErr;?></span>
+                        <!-- telefono -->
+                        <div class="form-group <?php echo (!empty($telefonoErr)) ? 'error: ' : ''; ?>">
+                            <label>telefono</label>
+                            <input type="text" required name="telefono" class="form-control" pattern="([0-9]{9})" title="Solo numeros enteros positivos" value="<?php echo $telefono; ?>">
+                            <span class="help-block"><?php echo $telefonoErr;?></span>
                         </div>
                          <!-- Foto-->
-                         <div class="form-group <?php echo (!empty($imagenErr)) ? 'error: ' : ''; ?>">
+                         <div class="form-group <?php echo (!empty($fotoErr)) ? 'error: ' : ''; ?>">
                         <label>Fotografía</label>
                         <!-- Solo acepto imagenes jpg -->
-                        <input type="file" name="imagen" class="form-control-file" id="imagen" accept=".jpg, .png">    
-                        <span class="help-block"><?php echo $imagenErr;?></span>    
+                        <input type="file" required name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    
+                        <span class="help-block"><?php echo $fotoErr;?></span>    
                         </div>
                         <!-- Botones --> 
-                        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-                        <input type="hidden" name="imagenAnterior" value="<?php echo $imagenAnterior; ?>"/>
-                        <button type="submit" value="aceptar" class="btn btn-warning"> <span class="glyphicon glyphicon-refresh"></span>  Modificar</button>
+                         <button type="submit" name= "aceptar" value="aceptar" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-save"></span>  Aceptar</button>
+                         <button type="reset" value="reset" class="btn btn-info"> <span class="glyphicon glyphicon-repeat"></span>  Limpiar</button>
                         <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                     </form>
                 </div>
@@ -320,5 +257,3 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         </div>
     </div>
 <br><br><br>
-<!-- Pie de la página web -->
-<?php require_once VIEW_PATH."pie.php"; ?>

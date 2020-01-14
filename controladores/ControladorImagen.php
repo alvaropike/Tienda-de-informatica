@@ -1,6 +1,6 @@
 <?php
     // Incluimos los ficheros que ncesitamos
-    require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/Dragonball/dirs.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
     require_once CONTROLLER_PATH."ControladorAlumno.php";
     require_once UTILITY_PATH."funciones.php";
 

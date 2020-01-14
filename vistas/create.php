@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     }
 
      // Procesamos fecha
-     $f_alta = date("d/m/Y", time());
+    $f_alta = date("d/m/Y", time());
 
     // Procesamos la foto
     $propiedades = explode("/", $_FILES['foto']['type']);

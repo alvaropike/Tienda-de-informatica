@@ -10,9 +10,6 @@
         require_once VIEW_PATH."admin_listado.php";
     } else{
         // Menú normal
-        require_once VIEW_PATH."user_listado.php";
+        require_once VIEW_PATH."admin_listado.php";
   }
   ?>
-
-<!-- Pie de la página web -->
-<?php require_once VIEW_PATH."pie.php"; ?>
