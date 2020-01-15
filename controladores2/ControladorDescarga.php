@@ -35,7 +35,7 @@ class ControladorDescarga{
 
         foreach ($lista as $a) {
             // Creamos el nodo
-            $alumno = $doc->createElement('protuctos');
+            $alumno = $doc->createElement('protucto');
             // Añadimos elementos          
             $alumno->appendChild($doc->createElement('nombre', $a->getNombre()));
             $alumno->appendChild($doc->createElement('tipo', $a->getTipo()));

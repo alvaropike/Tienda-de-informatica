@@ -28,7 +28,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     <div class="row">
             <div class="col-md-12">
                 <div class="page-header">
-                    <h1>Ficha del alumno</h1>
+                    <h1>Ficha del producto</h1>
                 </div>
                 <!-- Muestro los datos del alumno-->
                 <a href="../utilidades/descargar.php?opcion=PDFAlumno&id=<?php echo $_GET["id"] ?>" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
@@ -64,6 +64,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <label>Descuento</label>
                             <p class="form-control-static"><?php echo $alumno->getDescuento(); ?></p>
                     </div>
+                    <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
             </div>
         </div>        
     </div>

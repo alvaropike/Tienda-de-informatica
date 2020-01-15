@@ -59,7 +59,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     <div class="row">
             <div class="col-md-12">
                 <div class="page-header">
-                    <h1>Ficha del alumno</h1>
+                    <h1>Ficha del Usuario</h1>
                 </div>
                 <!-- Muestro los datos del alumno-->
                 <a href="../utilidades/descargar.php?opcion=PDFAlumno&id=<?php echo $_GET["id"] ?>" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
@@ -103,7 +103,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="alert alert-danger fade in">
                         <input type="hidden" name="id" value="<?php echo trim($id); ?>"/>
-                        <p>¿Está seguro que desea borrar este alumno/a?</p><br>
+                        <p>¿Está seguro que desea borrar este usuario/a?</p><br>
                         <p>
                             <button type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span>  Borrar</button>
                             <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header clearfix">
-                    <h2 class="pull-left">Fichas de los luchadores</h2>
+                    <h2 class="pull-left">Fichas de los productos</h2>
                 </div>
                 <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="no_imprimir">
                     <div class="form-group mx-sm-5 mb-2">
@@ -12,12 +12,9 @@
                     </div>
                     <button type="submit" class="btn btn-primary mb-2"> <span class="glyphicon glyphicon-search"></span>  Buscar</button>
                     <!-- Aquí va el nuevo botón para dar de alta, podría ir al final -->
-                    <!-- <a href="javascript:window.print()" class="btn pull-right"> <span class="glyphicon glyphicon-print"></span> IMPRIMIR</a> -->
-                    <!-- <a href="utilidades/descargar.php?opcion=TXT" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  TXT</a> -->
-                    <a href="../utilidades/descargar.php?opcion=PDF&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
-                    <a href="../utilidades/descargar.php?opcion=XML&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  XML</a>
-                    <!-- <a href="utilidades/descargar.php?opcion=JSON" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  JSON</a> -->
-                    <a href="create.php" class="btn btn-success pull-right"><span class="glyphicon glyphicon-user"></span>  Añadir Alumno/a</a>
+                    <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
+                    <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  XML</a>
+                    <a href="vistas2/create.php" class="btn btn-success pull-right"><span class="glyphicon glyphicon-user"></span>  Añadir Producto</a>
                     
                 </form>
             </div>
@@ -28,8 +25,8 @@
             
             // Incluimos los ficheros que ncesitamos
             // Incluimos los directorios a trabajar
-            require_once CONTROLLER_PATH2."ControladorAlumno.php";
-            require_once CONTROLLER_PATH2."Paginador.php";
+            require_once CONTROLLER_PATH."ControladorAlumno2.php";
+            require_once CONTROLLER_PATH."Paginador.php";
             require_once UTILITY_PATH."funciones.php"; 
 
             // creamos la consulta dependiendo si venimos o no del formulario
@@ -40,7 +37,7 @@
                 $nombre = filtrado($_POST["alumno"]);
             }
             // Cargamos el controlador de alumnos
-            $controlador = ControladorAlumno::getControlador();
+            $controlador = ControladorAlumno2::getControlador();
             
             // Parte del paginador
             $pagina = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
@@ -82,16 +79,15 @@
                     echo "<tr>";
                     echo "<td>" . $alumno->getNombre() . "</td>";
                     echo "<td>" . $alumno->getTipo() . "</td>";
-                    // echo "<td>" . str_repeat("*",strlen($alumno->getPassword())) . "</td>";
                     echo "<td>" . $alumno->getDistribuidor() . "</td>";
                     echo "<td>" . $alumno->getStock() . "</td>";
                     echo "<td>" . $alumno->getPrecio() . "</td>";
                     echo "<td>" . $alumno->getDescuento() . "</td>";
-                    echo "<td><img src='imagenes/usuarios/".$alumno->getImagen()."' width='48px' height='48px'></td>";
+                    echo "<td><img src='imagenes/productos/".$alumno->getImagen()."' width='48px' height='48px'></td>";
                     echo "<td>";
-                    echo "<a href='vistas/read.php?id=" . encode($alumno->getId()) . "' title='Ver Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                    echo "<a href='vistas/update.php?id=" . encode($alumno->getId()) . "' title='Actualizar Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                    echo "<a href='vistas/delete.php?id=" . encode($alumno->getId()) . "' title='Borar Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                    echo "<a href='vistas2/read.php?id=" . encode($alumno->getId()) . "' title='Ver Usuario/a' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                    echo "<a href='vistas2/update.php?id=" . encode($alumno->getId()) . "' title='Actualizar Usuario/a' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                    echo "<a href='vistas2/delete.php?id=" . encode($alumno->getId()) . "' title='Borar Usuario/a' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -102,7 +98,7 @@
                 echo "</ul>";
             } else {
                 // Si no hay nada seleccionado
-                echo "<p class='lead'><em>No se ha encontrado datos de alumnos/as.</em></p>";
+                echo "<p class='lead'><em>No se ha encontrado datos de usuarios/as.</em></p>";
             }
             ?>
 

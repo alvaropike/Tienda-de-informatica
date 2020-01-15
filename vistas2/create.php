@@ -15,7 +15,7 @@
 // Incluimos los directorios a trabajar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH."ControladorAlumno2.php";
-require_once CONTROLLER_PATH2."ControladorImagen.php";
+require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
 
  
@@ -112,7 +112,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
      if($mod){
          // salvamos la imagen
          $imagen = md5($_FILES['imagen']['tmp_name'] . $_FILES['imagen']['name'].time()) . "." . $extension;
-         $controlador = ControladorImagen::getControlador();
+         $controlador = ControladorImagen2::getControlador();
          if(!$controlador->salvarImagen($imagen)){
              $imagenErr= "Error al procesar la imagen y subirla al servidor";
          }
@@ -150,9 +150,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Crear Alumno/a</h2>
+                        <h2>Añadir Productos</h2>
                     </div>
-                    <p>Por favor rellene este formulario para añadir un nuevo alumno/a a la base de datos de la clase.</p>
+                    <p>Por favor rellene este formulario para añadir un nuevo producto a la base de datos de la tienda.</p>
                     <!-- $nombre = $tipo = $email = $password = $admin = $foto = $stock = $f_alta = ""; -->
                     <!-- Formulario-->
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">

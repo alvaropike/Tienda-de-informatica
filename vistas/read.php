@@ -61,13 +61,14 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                             <p class="form-control-static"><?php echo $alumno->getAdmin(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Telefono</label><
+                        <label>Telefono</label>
                             <p class="form-control-static"><?php echo $alumno->getTelefono(); ?></p>
                     </div>
                     <div class="form-group">
                         <label>Fecha de alta</label>
                             <p class="form-control-static"><?php echo $alumno->getF_alta(); ?></p>
                     </div>
+                    <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
             </div>
         </div>        
     </div>

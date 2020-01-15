@@ -8,7 +8,7 @@
     /**
      * Controlador de descargas
      */
-class ControladorImagen {
+class ControladorImagen2 {
     
     // Variable instancia para Singleton
     static private $instancia = null;
@@ -24,20 +24,20 @@ class ControladorImagen {
      */
     public static function getControlador() {
         if (self::$instancia == null) {
-            self::$instancia = new ControladorImagen();
+            self::$instancia = new ControladorImagen2();
         }
         return self::$instancia;
     }
 
     function salvarImagen($imagen) {
-        if (move_uploaded_file($_FILES['imagen']['tmp_name'], IMAGE_PATH . $imagen)) {
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], IMAGE_PATH2 . $imagen)) {
             return true;
         }
         return false;
     }
     
     function eliminarImagen($imagen) {
-        $fichero = IMAGE_PATH . $imagen;
+        $fichero = IMAGE_PATH2 . $imagen;
         if (file_exists($fichero)) {
             unlink($fichero); // Funcion para borrar desde el servidor
             return true;
@@ -51,7 +51,7 @@ class ControladorImagen {
         // Procesamos la imagen
         $extension = explode("/", $_FILES['foto']['type']);
         $nombreFoto = md5($_FILES['foto']['tmp_name'] . $_FILES['foto']['name']) . "." . $extension[1];
-        if (!move_uploaded_file($_FILES['foto']['tmp_name'], ROOT_PATH . "/fotos/$nombreFoto")) {
+        if (!move_uploaded_file($_FILES['foto']['tmp_name'], ROOT_PATH . "/imagenes/productos/$nombreFoto")) {
             //header("location: error.php");
             //exit();
             $nombreFoto = $fotoAnterior;

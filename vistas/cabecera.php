@@ -35,7 +35,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Gestión de Alumnado CRUD v.1.1</title>
+        <title>Tienda de informatica</title>
         <!--
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/estilos.css">

@@ -196,9 +196,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Crear Alumno/a</h2>
+                        <h2>Actualizar productos</h2>
                     </div>
-                    <p>Por favor rellene este formulario para añadir un nuevo alumno/a a la base de datos de la clase.</p>
+                    <p>Por favor rellene este formulario para añadir un nuevo producto a la base de datos de la clase.</p>
                     <!-- $nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = ""; -->
                     <!-- Formulario-->
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post" enctype="multipart/form-data">

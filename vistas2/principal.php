@@ -7,9 +7,9 @@
     session_start();    
     if(isset($_SESSION['USUARIO']['email'])){
         // Menu de administrador
-        require_once VIEW_PATH."admin_listado.php";
+        require_once VIEW_PATH2."admin_listado.php";
     } else{
         // Menú normal
-        require_once VIEW_PATH."admin_listado.php";
+        require_once VIEW_PATH2."admin_listado.php";
   }
   ?>

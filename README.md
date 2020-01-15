@@ -42,3 +42,8 @@ imagen
 
 Descarga de PDF y XML de productos y usuarios
 ademas ficha individual en pdf de usuarios y productos 
+
+
+todo
+controlador alumno2
+controlador descarga2
