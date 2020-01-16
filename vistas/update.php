@@ -140,7 +140,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $errores=[];
          //El registro se ha lamacenado corectamente
          //alerta("Alumno/a creado con éxito");
-         header("location: ../index.php");
+         header("location: ../Usuario.php");
          exit();
      }else{
          header("location: error.php");
@@ -250,7 +250,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="hidden" name="imagenAnterior" value="<?php echo $imagenAnterior; ?>"/>
                         <button type="submit" value="aceptar" class="btn btn-warning"> <span class="glyphicon glyphicon-refresh"></span>  Modificar</button>
-                        <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                        <a href="../Usuario.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                     </form>
                 </div>
             </div>        

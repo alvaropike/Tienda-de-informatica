@@ -2,14 +2,14 @@
 
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno.php";
+require_once CONTROLLER_PATH."ControladorAlumno2.php";
 require_once UTILITY_PATH."funciones.php";
 
 // Compramos la existencia del parámetro id antes de usarlo
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Cargamos el controlador de alumnos
     $id = decode($_GET["id"]);
-    $controlador = ControladorAlumno::getControlador();
+    $controlador = ControladorAlumno2::getControlador();
     $alumno= $controlador->buscarAlumno($id);
     if (is_null($alumno)){
         // hay un error
@@ -64,7 +64,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <label>Descuento</label>
                             <p class="form-control-static"><?php echo $alumno->getDescuento(); ?></p>
                     </div>
-                    <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                    <a href="../Producto.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
             </div>
         </div>        
     </div>

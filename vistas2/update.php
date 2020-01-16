@@ -11,13 +11,13 @@
 //   }
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno.php";
-require_once CONTROLLER_PATH."ControladorImagen.php";
+require_once CONTROLLER_PATH."ControladorAlumno2.php";
+require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
  
 // Variables temporales
-$nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = $imagenAnterior = "";
-$nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $fotoErr = $telefonoErr = $f_alta = "";
+$nombre = $tipo = $distribuidor = $stock = $precio = $descuento = $imagen = $imagenAnterior ="";
+$nombreErr = $tipoErr = $distribuidorErr = $stockErr = $precioErr = $descuentoErr = $imagenErr = "";
 $errores=[];
 // Procesamos la información obtenida por el get
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -117,7 +117,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         if($mod){
             // salvamos la imagen
             $imagen = md5($_FILES['imagen']['tmp_name'] . $_FILES['imagen']['name'].time()) . "." . $extension;
-            $controlador = ControladorImagen::getControlador();
+            $controlador = ControladorImagen2::getControlador();
             if(!$controlador->salvarImagen($imagen)){
                 $imagenErr= "Error al procesar la imagen y subirla al servidor";
             }
@@ -142,13 +142,13 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
      if(empty($nombreErr) && empty($tipoErr) && empty($distribuidorErr) && empty($stockErr) && 
      empty($precioErr) && empty($descuentoErr) && empty($imagenErr)){
      // creamos el controlador de alumnado
-     $controlador = ControladorAlumno::getControlador();
+     $controlador = ControladorAlumno2::getControlador();
      $estado = $controlador->actualizarAlumno($id, $nombre, $tipo, $distribuidor, $stock, $precio, $descuento, $imagen);
      if($estado){
         $errores=[];
          //El registro se ha lamacenado corectamente
          //alerta("Alumno/a creado con éxito");
-         header("location: ../index.php");
+         header("location: ../Producto.php");
          exit();
      }else{
          header("location: error.php");
@@ -163,7 +163,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Comprobamos que existe el id antes de ir más lejos
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         $id =  decode($_GET["id"]);
-        $controlador = ControladorAlumno::getControlador();
+        $controlador = ControladorAlumno2::getControlador();
         $alumno = $controlador->buscarAlumno($id);
         if (!is_null($alumno)) {
             $nombre = $alumno->getNombre();
@@ -248,14 +248,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                          <div class="form-group <?php echo (!empty($imagenErr)) ? 'error: ' : ''; ?>">
                         <label>Fotografía</label>
                         <!-- Solo acepto imagenes jpg -->
-                        <input type="file" required name="imagen" class="form-control-file" id="imagen" accept=".png, .jpg">    
+                        <input type="file" name="imagen" class="form-control-file" id="imagen" accept=".png, .jpg">    
                         <span class="help-block"><?php echo $imagenErr;?></span>    
                         </div>
                         <!-- Botones --> 
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="hidden" name="imagenAnterior" value="<?php echo $imagenAnterior; ?>"/>
                         <button type="submit" value="aceptar" class="btn btn-warning"> <span class="glyphicon glyphicon-refresh"></span>  Modificar</button>
-                        <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                        <a href="../Producto.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                     </form>
                 </div>
             </div>        

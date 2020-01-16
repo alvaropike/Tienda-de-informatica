@@ -12,8 +12,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary mb-2"> <span class="glyphicon glyphicon-search"></span>  Buscar</button>
                     <!-- Aquí va el nuevo botón para dar de alta, podría ir al final -->
-                    <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
-                    <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  XML</a>
+                    <a href="utilidades/descargar2.php?opcion=PDF&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
+                    <a href="utilidades/descargar2.php?opcion=XML&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  XML</a>
                     <a href="vistas2/create.php" class="btn btn-success pull-right"><span class="glyphicon glyphicon-user"></span>  Añadir Producto</a>
                     
                 </form>
@@ -116,3 +116,4 @@
     ?>
     </div>
     <br><br><br> 
+    <a href="index.php" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>Administración</a>

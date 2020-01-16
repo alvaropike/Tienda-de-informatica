@@ -11,15 +11,15 @@
 //   }
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno.php";
-require_once CONTROLLER_PATH."ControladorImagen.php";
+require_once CONTROLLER_PATH."ControladorAlumno2.php";
+require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
 
 // Obtenemos los datos del alumno que nos vienen de la página anterior
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     // Cargamos el controlador de alumnos
     $id = decode($_GET["id"]);
-    $controlador = ControladorAlumno::getControlador();
+    $controlador = ControladorAlumno2::getControlador();
     $alumno = $controlador->buscarAlumno($id);
     if (is_null($alumno)) {
         // hay un error
@@ -30,14 +30,14 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
 
 // Los datos del formulario al procesar el sí.
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
-    $controlador = ControladorAlumno::getControlador();
+    $controlador = ControladorAlumno2::getControlador();
     $alumno = $controlador->buscarAlumno($_POST["id"]);
     if ($controlador->borrarAlumno($_POST["id"])) {
         //Se ha borrado y volvemos a la página principal
        // Debemos borrar la foto del alumno
-       $controlador = ControladorImagen::getControlador();
+       $controlador = ControladorImagen2::getControlador();
        if($controlador->eliminarImagen($alumno->getImagen())){
-            header("location: ../index.php");
+            header("location: ../Producto.php");
             exit();
        }else{
             header("location: error.php");
@@ -102,7 +102,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                         <p>¿Está seguro que desea borrar este producto?</p><br>
                         <p>
                             <button type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span>  Borrar</button>
-                            <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                            <a href="../Producto.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                         </p>
                     </div>
                 </form>

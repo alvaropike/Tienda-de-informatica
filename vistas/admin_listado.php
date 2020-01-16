@@ -123,3 +123,4 @@
     ?>
     </div>
     <br><br><br> 
+    <a href="index.php" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>Administración General</a>

@@ -1,11 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH2 . "ControladorAlumno.php";
+require_once CONTROLLER_PATH . "ControladorAlumno2.php";
 require_once MODEL_PATH . "usuario.php";
 require_once VENDOR_PATH . "autoload.php";
 use Spipu\Html2Pdf\HTML2PDF;
 
-class ControladorDescarga{
+class ControladorDescarga2{
     // Configuración del servidor
     private $fichero;
     // Variable instancia para Singleton
@@ -18,7 +18,7 @@ class ControladorDescarga{
     public static function getControlador()
     {
         if (self::$instancia == null) {
-            self::$instancia = new ControladorDescarga();
+            self::$instancia = new ControladorDescarga2();
         }
         return self::$instancia;
     }
@@ -26,7 +26,7 @@ class ControladorDescarga{
     public function descargarXML()
     {
         $this->fichero = "productos.xml";
-        $lista = $controlador = ControladorAlumno::getControlador();
+        $lista = $controlador = ControladorAlumno2::getControlador();
         $lista = $controlador->listarAlumnos("", "");
         $doc = new DOMDocument('1.0', 'UTF-8');
         $alumnos = $doc->createElement('protuctos');
@@ -59,7 +59,7 @@ class ControladorDescarga{
 
     public function descargarPDF(){
         $sal ='<h2 class="pull-left">Fichas de los productos</h2>';
-        $lista = $controlador = ControladorAlumno::getControlador();
+        $lista = $controlador = ControladorAlumno2::getControlador();
         $lista = $controlador->listarAlumnos("", "");
         if (!is_null($lista) && count($lista) > 0) {
             $sal.="<table class='table table-bordered table-striped'>";
@@ -104,7 +104,7 @@ class ControladorDescarga{
     public function descargarPDFAlumno($id){
         $id = decode($id);
         $sal ='<h2 class="pull-left">Fichas de los productos</h2>';
-        $lista = $controlador = ControladorAlumno::getControlador();
+        $lista = $controlador = ControladorAlumno2::getControlador();
         $lista = $controlador->listarAlumno($id);
         if (!is_null($lista) && count($lista) > 0) {
             $sal.="<table class='table table-bordered table-striped'>";

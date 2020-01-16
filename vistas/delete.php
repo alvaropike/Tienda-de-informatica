@@ -37,7 +37,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
        // Debemos borrar la foto del alumno
        $controlador = ControladorImagen::getControlador();
        if($controlador->eliminarImagen($alumno->getFoto())){
-            header("location: ../index.php");
+            header("location: ../Usuario.php");
             exit();
        }else{
             header("location: error.php");
@@ -106,7 +106,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                         <p>¿Está seguro que desea borrar este usuario/a?</p><br>
                         <p>
                             <button type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span>  Borrar</button>
-                            <a href="../index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                            <a href="../Usuario.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                         </p>
                     </div>
                 </form>
