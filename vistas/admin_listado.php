@@ -6,19 +6,19 @@
                     <h2 class="pull-left">Fichas de los usuarios</h2>
                 </div>
                 <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="no_imprimir">
-                    <div class="form-group mx-sm-5 mb-2">
-                        <label for="alumno" class="sr-only">Nombre</label>
-                        <input type="text" class="form-control" id="buscar" name="alumno" placeholder="Nombre">
+                    <div class="form-group">
+                    <div class="col-md-4">
+                        <label class="col-md-4 control-label" for="alumno"></label>  
+                        <input id="buscar" type="text" name="alumno" placeholder="Buscar Alumno" class="form-control input-md">
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2"> <span class="glyphicon glyphicon-search"></span>  Buscar</button>
+                    </div>
+                        <button type="submit" class="btn btn-primary mb-2"> <span class="glyphicon glyphicon-search"></span>  Buscar</button>
                     <!-- Aquí va el nuevo botón para dar de alta, podría ir al final -->
-                    <!-- <a href="javascript:window.print()" class="btn pull-right"> <span class="glyphicon glyphicon-print"></span> IMPRIMIR</a> -->
-                    <!-- <a href="utilidades/descargar.php?opcion=TXT" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  TXT</a> -->
-                    <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
-                    <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  XML</a>
-                    <!-- <a href="utilidades/descargar.php?opcion=JSON" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  JSON</a> -->
-                    <a href="vistas/create.php" class="btn btn-success pull-right"><span class="glyphicon glyphicon-user"></span>  Añadir Usuario/a</a>
-                    
+                    <div class="    ">
+                    <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn btn-primary btn-default" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span>  PDF</a>
+                    <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn btn-primary btn-default" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span> XML</a>
+                    <a href="vistas/create.php" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>  Añadir Usuario/a</a>
+                    </div>
                 </form>
             </div>
             <!-- Linea para dividir -->
@@ -100,7 +100,7 @@
                 }
                 echo "</tbody>";
                 echo "</table>";
-                echo "<ul class='pager' id='no_imprimir'>"; //  <ul class="pagination">
+                echo "<ul class='pagination mx-auto justify-content-center' id='no_imprimir'>"; //  <ul class="pagination">
                 echo $paginador->crearLinks($enlaces);
                 echo "</ul>";
             } else {
@@ -122,5 +122,4 @@
             echo "Es tu primera visita hoy";
     ?>
     </div>
-    <br><br><br> 
-    <a href="index.php" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>Administración General</a>
+    <a href="index.php" class="btn btn-primary btn-default pull-right" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span> Administración General</a>

@@ -4,7 +4,7 @@
 <!-- Cuerpo de la página web -->
 <?php ; 
     error_reporting(E_ALL & ~E_NOTICE);
-    session_start();    
+    // session_start();    
     if(isset($_SESSION['USUARIO']['email'])){
         // Menu de administrador
         require_once VIEW_PATH."admin_listado.php";

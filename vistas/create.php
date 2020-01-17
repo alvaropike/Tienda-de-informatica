@@ -137,74 +137,98 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
 }
 ?>
 <!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."cabecera.php"; ?>
-<!-- Cuerpo de la página web -->
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>Crear Usuario/a</h2>
-                    </div>
-                    <p>Por favor rellene este formulario para añadir un nuevo usuario/a a la base de datos de la tienda.</p>
-                    <!-- $nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = ""; -->
-                    <!-- Formulario-->
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+<?php require_once VIEW_PATH."navbar.php"; ?>
+    <!-- Cuerpo de la página web -->
+    <style>
+    .div-to-align {
+        width: 75%;
+        margin: 10px 210px;
+    }
+
+    .div-wrapper {
+        height: 200px;
+        margin-top: 40px;
+    }
+    </style>    
+        <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
+        <div class="div-to-align">
+            <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data"> 
+            <fieldset> 
+                        <!-- Form Name -->
+                        <legend>Añadir usuario</legend>
+
                         <!-- Nombre-->
                         <div class="form-group <?php echo (!empty($nombreErr)) ? 'error: ' : ''; ?>">
-                            <label>Nombre</label>
-                            <input type="text" required name="nombre" class="form-control" value="<?php echo $nombre; ?>" 
-                                pattern="([^\s][A-zÀ-ž\s]+)"
-                                title="El nombre no puede contener números"
-                                minlength="3">
-                            <span class="help-block"><?php echo $nombreErr;?></span>
-                        </div>
+                            <label class="col-md-4 control-label" for="textinput">Nombre</label>  
+                                <div class="col-md-7">
+                                    <input type="text" required name="nombre" class="form-control" value="<?php echo $nombre; ?>" 
+                                        pattern="([^\s][A-zÀ-ž\s]+)"
+                                        title="El nombre no puede contener números"
+                                        minlength="3">
+                                    <span class="help-block"><?php echo $nombreErr;?></span>
+                                </div>
+                        </div>      
                         <!-- apellido-->
                         <div class="form-group <?php echo (!empty($apellidoErr)) ? 'error: ' : ''; ?>">
-                            <label>apellido</label>
+                        <label class="col-md-4 control-label" for="textinput">Apellido</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="apellido" class="form-control" value="<?php echo $apellido; ?>" 
                                 pattern="([^\s][A-zÀ-ž\s]+)"
                                 title="El apellido no puede contener números"
                                 minlength="3">
                             <span class="help-block"><?php echo $apellidoErr;?></span>
+                            </div>
                         </div>
                         <!-- Email -->
                         <div class="form-group <?php echo (!empty($emailErr)) ? 'error: ' : ''; ?>">
-                            <label>E-Mail</label>
+                        <label class="col-md-4 control-label" for="textinput">E-mail</label>  
+                            <div class="col-md-7">
                             <input type="email" required name="email" class="form-control" value="<?php echo $email; ?>">
                             <span class="help-block"><?php echo $emailErr;?></span>
+                            </div>
                         </div>
                         <!-- Password -->
                         <div class="form-group <?php echo (!empty($passwordErr)) ? 'error: ' : ''; ?>">
-                            <label>Contraseña</label>
+                        <label class="col-md-4 control-label" for="textinput">Password</label>  
+                            <div class="col-md-7">
                             <input type="password" required name="password" class="form-control" value="<?php echo $password; ?>">
                             <span class="help-block"><?php echo $passwordErr;?></span>
                         </div>
+                        </div>
                         <!-- Admin DESPLEGABLE-->
                         <div class="form-group">
-                        <label>Admin</label>
-                            <select name="admin">
+                        <label class="col-md-4 control-label" for="textinput">Admin</label>  
+                            <div class="col-md-7">
+                            <select name="admin"  class="form-control">
                                 <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
                                 <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
                             </select>
                         </div>
+                        </div>
                         <!-- telefono -->
                         <div class="form-group <?php echo (!empty($telefonoErr)) ? 'error: ' : ''; ?>">
-                            <label>telefono</label>
+                        <label class="col-md-4 control-label" for="textinput">Telefono</label>  
+                            <div class="col-md-7">
                             <input type="text" required name="telefono" class="form-control" pattern="([0-9]{9})" title="Solo numeros enteros positivos" value="<?php echo $telefono; ?>">
                             <span class="help-block"><?php echo $telefonoErr;?></span>
                         </div>
+                        </div>
                          <!-- Foto-->
                          <div class="form-group <?php echo (!empty($fotoErr)) ? 'error: ' : ''; ?>">
-                        <label>Fotografía</label>
+                         <label class="col-md-4 control-label" for="textinput">Foto</label>  
+                            <div class="col-md-7">
                         <!-- Solo acepto imagenes jpg -->
                         <input type="file" required name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    
                         <span class="help-block"><?php echo $fotoErr;?></span>    
                         </div>
+                        </div>
                         <!-- Botones --> 
+                        <label class="col-md-4 control-label" for="submit">Enviar</label>
+                        <div class="col-md-7">
                          <button type="submit" name= "aceptar" value="aceptar" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-save"></span>  Aceptar</button>
                          <button type="reset" value="reset" class="btn btn-info"> <span class="glyphicon glyphicon-repeat"></span>  Limpiar</button>
                         <a href="../Usuario.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                        </fieldset>
                     </form>
                 </div>
             </div>        

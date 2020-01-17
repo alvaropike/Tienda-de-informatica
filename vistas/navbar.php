@@ -1,3 +1,4 @@
+<?php require_once ROOT_PATH."dirs.php";?>
 <style>
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
@@ -17,8 +18,8 @@
 }
 
 </style>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->  
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
@@ -28,7 +29,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark blue lighten-1">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
     aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,12 +38,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item s">
-        <a class="nav-link" href="#">Home
+        <a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Usuario.php">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="">Features</a>
+        
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
@@ -56,9 +58,9 @@
             <!-- <img src="../imagenes/usuarios/7facc61595d1666da1ead5808d854537.jpeg" class="rounded-circle z-depth-0" alt="avatar image" height="35"> -->
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Hola Pepito</a>
+          <a class="dropdown-item" href="#">Mi perfil</a>
+          <a class="dropdown-item" href="#">Cerrar Sesion</a>
         </div>
       </li>
     </ul>

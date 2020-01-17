@@ -42,15 +42,14 @@
         <script src="script/jquery.min.js"></script>
         <script src="script/bootstrap.js"></script>
         -->
-        <link rel="icon" type="image/png" href="http://localhost/iaw/crudpdo/favicon.png">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-        <link rel="stylesheet" href="http://localhost/iaw/crudpdo/css/print.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-
+        <!-- <link rel="icon" type="image/png" href="http://localhost/iaw/crudpdo/favicon.png"> -->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
+        <!-- <link rel="stylesheet" href="http://localhost/iaw/crudpdo/css/print.css"> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script> -->
         
         <style type="text/css">
-            .wrapper{
+            /* .wrapper{
                 width: 650px;
                 margin: 0 auto;
             }
@@ -91,8 +90,10 @@ footer iframe {
     width:100%;
     position:relative;
     height:170px;
+} */
+.pull-right {
+  float: right !important;
 }
-
 
 </style>
 
@@ -105,3 +106,4 @@ footer iframe {
     <body>
 <!-- Cabecera de las páginas web común a todos -->
 <!-- Barra de Navegacion -->
+<?php require_once VIEW_PATH."navbar.php"; ?>
