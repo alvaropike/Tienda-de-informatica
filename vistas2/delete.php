@@ -11,7 +11,7 @@
 //   }
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno2.php";
+require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
 
@@ -19,7 +19,7 @@ require_once UTILITY_PATH."funciones.php";
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     // Cargamos el controlador de alumnos
     $id = decode($_GET["id"]);
-    $controlador = ControladorAlumno2::getControlador();
+    $controlador = ControladorProducto::getControlador();
     $alumno = $controlador->buscarAlumno($id);
     if (is_null($alumno)) {
         // hay un error
@@ -30,7 +30,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
 
 // Los datos del formulario al procesar el sí.
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
-    $controlador = ControladorAlumno2::getControlador();
+    $controlador = ControladorProducto::getControlador();
     $alumno = $controlador->buscarAlumno($_POST["id"]);
     if ($controlador->borrarAlumno($_POST["id"])) {
         //Se ha borrado y volvemos a la página principal

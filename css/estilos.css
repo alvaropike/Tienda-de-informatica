@@ -1,0 +1,329 @@
+html{
+    background-image: url('./imagenes/fondo.jpg');
+    background-size:cover_auto;
+    background-repeat: repeat-y;
+    padding: 0px;
+}
+body{
+    padding: 0px;
+    margin: 0px;
+   
+}
+header{
+    background-color:burlywood;
+    overflow-y:hidden;
+}
+header img{
+    margin: 20px;
+    float:left;
+}
+header form{
+    width: 50%;
+    min-width: 100px;
+    max-width: 225px;
+    float:right;
+    margin:10px;
+}
+
+header form input[type='text'],input[type='password']{
+    padding: 6px 3px 6px 3px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    border:solid 1px white;
+    color:brown;
+    font-size: 0.9em; 
+    width: 42%;
+}
+header form input[type='submit']{
+    border: 0px;
+    background-color: white;
+    padding: 8px 6px 7px 6px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    color:brown;
+    float:right;
+   margin-right: 55px;
+    
+}
+header form p{
+    font-family: sans-serif;
+    color: black;
+    text-align: right;
+    margin-right: 20px;
+}
+header form a{
+    color: black;
+    font-family: sans-serif;
+    white-space: nowrap;
+   
+   
+}
+header a:visited{
+    color:black;
+}
+
+#carrito{
+    display:block;
+    color: white;
+    width: 20px;
+    position:relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size:12px;
+    text-decoration:none;
+    background-color: brown;
+    border-radius: 100%;
+    top: -20px;
+    left: 0px;
+    margin: 20px;
+    font-size: 1em;
+    text-align: center;
+    padding: 3px;
+    float:left;
+}
+#carrito:before{
+    content: url(imagenes/icon_carrito.png);
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:-20px;
+    top:18px;
+    z-index:0;
+}
+#migas{
+    all:unset;
+    background-color:white;
+    float:left;
+    width: 100%;
+    line-height: 0px;
+}
+#migas ul li{
+    display: inline;
+}
+#migas a{
+    all:unset; 
+    font-family: sans-serif;
+    color:brown;
+}
+#migas a:after{
+    content: ' /';
+}
+#migas li:last-child a:after{
+    content: '';
+}
+#migas a:hover{
+    color:blue;
+}
+#nido{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: strecth;
+    
+    
+}
+nav{
+    flex:1 10%;
+    padding: 10px;
+    background-color: gray;
+    min-width: 100px;
+    font-family: sans-serif;
+    padding-left: 15px;
+    line-height: 15px;
+}
+nav a{
+    text-decoration: none;
+    color:white;
+    font-size: 1.5em;
+}
+nav a:visited{
+   
+}
+section {
+    background-color: burlywood;
+    font-family: sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+section h1{
+    color:brown;
+    display:block;
+    background-color: white;
+    padding: 10px;
+    padding-right: 20px;
+    font-weight: 100;
+    text-align: right;
+}
+section table{
+    margin: 0 auto;
+}
+section form{
+    background-color: burlywood;
+    width: 50%;
+}
+#form_filtrado{
+    background-color: red;
+    width: 98%;
+    padding: 5px;
+    background-color: burlywood;
+    margin: 0 auto;
+    margin-top: -10px;
+    
+}
+#form_filtrado p{
+    display:inline;
+    
+}
+#form_filtrado input[type='submit']{
+    margin-top: 5px;
+}
+#form_filtrado input{
+    margin-left: 10px;
+}
+#form_filtrado input[type='number']{
+    max-width: 100px;
+}
+section form input{
+    padding: 7px 3px 7px 3px;
+    margin: 5px auto;
+    background-color: white;
+    border:solid 1px white;
+    
+}
+section form input[type='submit']{
+    color:brown;
+    background-color: white;
+    border: solid 0px;
+    padding: 8px 10px 8px 10px;
+    margin: 25px auto;
+    float:right;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.5);
+    font-weight: bolder;
+}
+section form input[type='submit']:hover{
+    box-shadow: none;
+    cursor: pointer;
+}
+#detalle{
+    margin: 10px;
+    padding: 30px;
+    background-color: rgba(255,255,255,0.5);
+    margin: 0  auto;
+    width: 80%;
+}
+#detalle h2{
+    text-align: right;
+    background-color: brown;
+    color:white;
+    padding: 5px;
+}
+section a{
+    display:inline-block;
+    text-decoration: none;
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    color:black;
+    background-color: white;
+}
+section a:hover{
+    background-color: brown;
+    color:white;
+}
+#tipo{
+    box-shadow: none;
+    margin-top: 10px;
+    
+    min-width: 200px;
+}
+.productos{
+    background-color: rgba(0,0,0,0);
+    margin: 10px;
+    min-width: 300px;
+    flex: 1 50%;
+}
+#producto_nido{ 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+.producto{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);
+    flex: 1 30%;
+    max-width: 200px;
+    min-width: 200px;
+    border-radius: 5px;
+    
+}
+.producto a{
+    background-color: rgba(0,0,0,0);
+    text-decoration:underline;
+    
+}
+.ofertas{
+    margin: 0 auto;
+    color:brown;
+    min-width: 100px;
+    flex: 1 20%;
+    
+}
+.oferta{
+    margin: 10px;
+    padding-bottom: 10px;
+    box-shadow: none;
+    border-bottom: 1px dotted black;
+    line-height: 20px;
+}
+.oferta p{
+    text-align: right;
+    font-weight: bolder;
+    font-size: 1.5em;
+    margin: 5px;
+}
+.oferta li spam{
+    font-weight: bolder;
+}
+.oferta ul{
+    margin: 5px;
+}
+.oferta h3{
+    margin: 0px;
+}
+.oferta h5{
+    text-align: right;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+#bienvenido{
+    background-color: white;
+    width: 100%;
+}
+#mod_producto{
+   
+     padding: 10px;
+    width: 50%;
+    min-width: 300px;
+}
+#mod_detalles{
+    border: 1px solid grey;
+    padding: 10px;
+    width: 50%;
+    min-width: 300px;
+}
+#sinstock{
+    color:red;
+    font-weight: bolder;
+}
+#bienvenido{
+    padding: 20px;
+    font-size: 1.2em;
+    width: 94%;
+    margin: 0 auto;
+    height: 500px;
+}

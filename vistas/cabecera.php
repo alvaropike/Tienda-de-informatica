@@ -47,6 +47,8 @@
         <link rel="stylesheet" href="http://localhost/iaw/crudpdo/css/print.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+
+        
         <style type="text/css">
             .wrapper{
                 width: 650px;

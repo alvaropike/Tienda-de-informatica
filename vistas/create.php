@@ -14,7 +14,7 @@
 
 // Incluimos los directorios a trabajar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno.php";
+require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once CONTROLLER_PATH."ControladorImagen.php";
 require_once UTILITY_PATH."funciones.php";
 
@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     if(empty($nombreErr) && empty($apellidoErr) && empty($emailErr) && empty($passwordErr) && 
         empty($adminErr) && empty($fotoErr) && empty($telefonoErr) && empty($f_altaErr)){
         // creamos el controlador de alumnado
-        $controlador = ControladorAlumno::getControlador();
+        $controlador = ControladorUsuario::getControlador();
         $estado = $controlador->almacenarAlumno($nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta);
         if($estado){
             //El registro se ha lamacenado corectamente
@@ -136,7 +136,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     $admin = "no";
 }
 ?>
- 
 <!-- Cabecera de la página web -->
 <?php require_once VIEW_PATH."cabecera.php"; ?>
 <!-- Cuerpo de la página web -->

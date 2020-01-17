@@ -11,7 +11,7 @@
 //   }
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno2.php";
+require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
  
@@ -142,7 +142,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
      if(empty($nombreErr) && empty($tipoErr) && empty($distribuidorErr) && empty($stockErr) && 
      empty($precioErr) && empty($descuentoErr) && empty($imagenErr)){
      // creamos el controlador de alumnado
-     $controlador = ControladorAlumno2::getControlador();
+     $controlador = ControladorProducto::getControlador();
      $estado = $controlador->actualizarAlumno($id, $nombre, $tipo, $distribuidor, $stock, $precio, $descuento, $imagen);
      if($estado){
         $errores=[];
@@ -163,7 +163,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Comprobamos que existe el id antes de ir más lejos
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         $id =  decode($_GET["id"]);
-        $controlador = ControladorAlumno2::getControlador();
+        $controlador = ControladorProducto::getControlador();
         $alumno = $controlador->buscarAlumno($id);
         if (!is_null($alumno)) {
             $nombre = $alumno->getNombre();

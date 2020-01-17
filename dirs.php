@@ -22,9 +22,6 @@ if ( !defined('IMAGE_PATH') )
 if ( !defined('VENDOR_PATH') )
     define('VENDOR_PATH', ROOT_PATH."vendor/");
 
-if ( !defined('CONTROLLER_PATH2') )
-    define('CONTROLLER_PATH2', ROOT_PATH."controladores2/");
-
 if ( !defined('VIEW_PATH2') )
     define('VIEW_PATH2', ROOT_PATH."vistas2/");
 

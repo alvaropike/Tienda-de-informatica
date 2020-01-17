@@ -2,14 +2,14 @@
 
 // Incluimos el controlador a los objetos a usar
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH."ControladorAlumno.php";
+require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once UTILITY_PATH."funciones.php";
 
 // Compramos la existencia del parámetro id antes de usarlo
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Cargamos el controlador de alumnos
     $id = decode($_GET["id"]);
-    $controlador = ControladorAlumno::getControlador();
+    $controlador = ControladorUsuario::getControlador();
     $alumno= $controlador->buscarAlumno($id);
     if (is_null($alumno)){
         // hay un error

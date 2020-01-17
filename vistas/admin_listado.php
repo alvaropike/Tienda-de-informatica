@@ -28,7 +28,7 @@
             
             // Incluimos los ficheros que ncesitamos
             // Incluimos los directorios a trabajar
-            require_once CONTROLLER_PATH."ControladorAlumno.php";
+            require_once CONTROLLER_PATH."ControladorUsuario.php";
             require_once CONTROLLER_PATH . "Paginador.php";
             require_once UTILITY_PATH."funciones.php"; 
 
@@ -40,7 +40,7 @@
                 $nombre = filtrado($_POST["alumno"]);
             }
             // Cargamos el controlador de alumnos
-            $controlador = ControladorAlumno::getControlador();
+            $controlador = ControladorUsuario::getControlador();
             
             // Parte del paginador
             $pagina = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
