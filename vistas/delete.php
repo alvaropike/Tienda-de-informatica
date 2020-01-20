@@ -50,19 +50,14 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
 } 
 
 ?>
-<!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."cabecera.php"; ?>
-<!-- Cuerpo de la página web -->
-<div class="wrapper">
-    <div class="container-fluid">
-
-    <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h1>Ficha del Usuario</h1>
+<?php require_once VIEW_PATH."navbar.php"; ?>
+    <!-- Cuerpo de la página web --> 
+        <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
+        <div class="div-to-align">
+                    <h1>Eliminar Usuario</h1>
                 </div>
                 <!-- Muestro los datos del alumno-->
-                <a href="../utilidades/descargar.php?opcion=PDFAlumno&id=<?php echo $_GET["id"] ?>" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>  PDF</a>
+                
                 <table>
                 <tr>
                         <td class="align-left">
@@ -101,14 +96,13 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                     </div>
                 <!-- Me llamo a mi mismo pero pasando GET -->
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <div class="alert alert-danger fade in">
+                    <!-- <div class="bg-danger"> -->
                         <input type="hidden" name="id" value="<?php echo trim($id); ?>"/>
-                        <p>¿Está seguro que desea borrar este usuario/a?</p><br>
-                        <p>
+                        <p>¿Está seguro que desea borrar este usuario/a?</p>
                             <button type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span>  Borrar</button>
-                            <a href="../Usuario.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                            <a role="button" href="../Usuario.php" class="btn btn-rounded btn-primary">Volver</a>
                         </p>
-                    </div>
+                    <!-- </div> -->
                 </form>
             </div>
         </div>        

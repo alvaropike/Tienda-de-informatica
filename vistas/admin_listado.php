@@ -1,4 +1,7 @@
 
+<style>
+a:hover{text-decoration:none;}
+</style>    
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -12,12 +15,13 @@
                         <input id="buscar" type="text" name="alumno" placeholder="Buscar Alumno" class="form-control input-md">
                     </div>
                     </div>
-                        <button type="submit" class="btn btn-primary mb-2"> <span class="glyphicon glyphicon-search"></span>  Buscar</button>
+                        <button type="submit" class="btn btn-primary mb-2"> <span></span>  Buscar  <i class="fas fa-search"></i></button>
                     <!-- Aquí va el nuevo botón para dar de alta, podría ir al final -->
-                    <div class="    ">
-                    <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn btn-primary btn-default" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span>  PDF</a>
-                    <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn btn-primary btn-default" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span> XML</a>
-                    <a href="vistas/create.php" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>  Añadir Usuario/a</a>
+                    <!-- <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn btn-primary btn-default" target="_blank"><span class="fas far fa-file-pdf pl-1"></span>  PDF</a> -->
+                    <a href="utilidades/descargar.php?opcion=PDF&id=all" class="btn btn-rounded btn-primary" target="_blank">pdf<i class="fas far fa-file-pdf pl-1"></i></a>
+                    <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn btn-rounded btn-primary" target="_blank">XML<i class="fas fas fa-file-alt pl-1"></i></a>
+                    <!-- <a href="utilidades/descargar.php?opcion=XML&id=all" class="btn btn-primary btn-default" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span> XML</a> -->
+                    <a href="vistas/create.php" class="btn btn-success"><span></span>  Añadir Usuario/a <i class="fas fa-plus-circle"></i></a>
                     </div>
                 </form>
             </div>
@@ -25,7 +29,7 @@
             <div class="page-header clearfix">        
             </div>
             <?php
-            
+            session_start();
             // Incluimos los ficheros que ncesitamos
             // Incluimos los directorios a trabajar
             require_once CONTROLLER_PATH."ControladorUsuario.php";
@@ -71,8 +75,6 @@
                 echo "<th>Telefono</th>";
                 echo "<th>F_alta</th>";
                 echo "<th>Foto</th>";
-                echo "<th>Acciones</th>";
-                echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
                 // Recorremos los registros encontrados
@@ -92,11 +94,21 @@
                     echo "<td>" . $alumno->getF_alta() . "</td>";
                     echo "<td><img src='imagenes/usuarios/".$alumno->getFoto()."' width='48px' height='48px'></td>";
                     echo "<td>";
-                    echo "<a href='vistas/read.php?id=" . encode($alumno->getId()) . "' title='Ver Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                    echo "<a href='vistas/update.php?id=" . encode($alumno->getId()) . "' title='Actualizar Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                    echo "<a href='vistas/delete.php?id=" . encode($alumno->getId()) . "' title='Borar Alumno/a' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                    echo "</td>";
-                    echo "</tr>";
+                    
+                    // Abrimos las sesiones para leerla
+                    
+                    if(isset($_SESSION['USUARIO']['email'])){
+                      // Menu de administrador
+                      echo "<a href='vistas/read.php?id=" . encode($alumno->getId()) . "' title='Ver Alumno/a' data-toggle='tooltip'><span class='far fa-eye'></span>  </a>";
+                      echo "<a href='vistas/update.php?id=" . encode($alumno->getId()) . "' title='Actualizar Alumno/a' data-toggle='tooltip'><span class='fas fa-pencil-alt'></span>  </a>";
+                      echo "<a href='vistas/delete.php?id=" . encode($alumno->getId()) . "' title='Borar Alumno/a' data-toggle='tooltip'><span class='fas fa-trash-alt'></span>  </a>";
+                      echo "</td>";
+                      echo "</tr>";
+                    } else{
+                      // Menú normal
+
+                    }
+                    
                 }
                 echo "</tbody>";
                 echo "</table>";

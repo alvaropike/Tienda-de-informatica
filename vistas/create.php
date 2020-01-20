@@ -138,18 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
 ?>
 <!-- Cabecera de la página web -->
 <?php require_once VIEW_PATH."navbar.php"; ?>
-    <!-- Cuerpo de la página web -->
-    <style>
-    .div-to-align {
-        width: 75%;
-        margin: 10px 210px;
-    }
-
-    .div-wrapper {
-        height: 200px;
-        margin-top: 40px;
-    }
-    </style>    
+    <!-- Cuerpo de la página web --> 
         <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
         <div class="div-to-align">
             <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data"> 
@@ -203,7 +192,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                                 <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
                                 <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
                             </select>
-                        </div>
+                            </div>
                         </div>
                         <!-- telefono -->
                         <div class="form-group <?php echo (!empty($telefonoErr)) ? 'error: ' : ''; ?>">
@@ -215,7 +204,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                         </div>
                          <!-- Foto-->
                          <div class="form-group <?php echo (!empty($fotoErr)) ? 'error: ' : ''; ?>">
-                         <label class="col-md-4 control-label" for="textinput">Foto</label>  
+                         <label class="col-md-4 control-label" for="foto">Foto</label>  
                             <div class="col-md-7">
                         <!-- Solo acepto imagenes jpg -->
                         <input type="file" required name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    

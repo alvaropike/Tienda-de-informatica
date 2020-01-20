@@ -182,16 +182,12 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 ?>
  
 <!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."cabecera.php"; ?>
-<!-- Cuerpo de la página web -->
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>Crear Usuario/a</h2>
+<?php require_once VIEW_PATH."navbar.php"; ?>
+    <!-- Cuerpo de la página web --> 
+        <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
+        <div class="div-to-align">
+                        <h2>Actualizar Usuario/a</h2>
                     </div>
-                    <p>Por favor rellene este formulario para añadir un nuevo usuario/a a la base de datos de la clase.</p>
                     <!-- $nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = ""; -->
                     <!-- Formulario-->
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post" enctype="multipart/form-data">
@@ -206,7 +202,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <!-- apellido-->
                         <div class="form-group <?php echo (!empty($apellidoErr)) ? 'error: ' : ''; ?>">
-                            <label>apellido</label>
+                            <label>Apellido</label>
                             <input type="text" required name="apellido" class="form-control" value="<?php echo $apellido; ?>" 
                                 pattern="([^\s][A-zÀ-ž\s]+)"
                                 title="El apellido no puede contener números"
@@ -227,11 +223,13 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <!-- Admin DESPLEGABLE-->
                         <div class="form-group">
-                        <label>Admin</label>
-                            <select name="admin">
+                        <label class="col-md-4 control-label" for="textinput">Admin</label>  
+                            <div class="col-md-7">
+                            <select name="admin" class="form-control">
                                 <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
                                 <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
                             </select>
+                            </div>
                         </div>
                         <!-- telefono -->
                         <div class="form-group <?php echo (!empty($telefonoErr)) ? 'error: ' : ''; ?>">

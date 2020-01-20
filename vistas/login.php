@@ -34,12 +34,12 @@ $controlador->salirSesion();
                     <!-- Nombre-->
                     <div class="form-group">
                         <label>Email:</label>
-                        <input type="email" required name="email" class="form-control" value="admin@admin.com">
+                        <input type="email" required name="email" class="form-control" value="alvaropiqueras@hotmail.com">
                     </div>
                     <!-- Contraseña -->
                     <div class="form-group">
                         <label>Contraseña:</label>
-                        <input type="password" required name="password" class="form-control" value="admin">
+                        <input type="password" required name="password" class="form-control" value="trenado">
                     </div>
                     <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-log-in"></span>  Entrar</button>
                     <a href="../index.php" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
@@ -49,6 +49,3 @@ $controlador->salirSesion();
     </div>
 </div>
 <br>
-
-<!-- Pie de la página web -->
-<?php require_once VIEW_PATH."pie.php"; ?>

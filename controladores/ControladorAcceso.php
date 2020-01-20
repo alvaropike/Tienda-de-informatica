@@ -41,7 +41,7 @@ class ControladorAcceso {
     
     
     public function procesarIdentificacion($email, $password){
-            $password = hash("sha256", $password);;
+            $password = hash("sha256", $password);
 
             // Conectamos a la base de datos
             $bd = ControladorBD::getControlador();
@@ -55,11 +55,13 @@ class ControladorAcceso {
             //var_dump($filas);
             if (count($filas) > 0) {
                  // abrimos las sesiones
-                 //session_start();
+                //  session_start();
                  // Almacenamos el usuario en la sesion.
                  $_SESSION['USUARIO']['email']=$email;
+                 $_SESSION['USUARIO']['foto']=$foto;
+
                  //echo $_SESSION['USUARIO']['email'];
-                 header("location: ../index.php"); 
+                 header("location: ../Usuario.php"); 
                  exit();              
             } else {
                 echo "<div class='wrapper'>";
