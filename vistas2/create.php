@@ -93,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
      // Procesamos la foto
      $propiedades = explode("/", $_FILES['imagen']['type']);
      $extension = $propiedades[1];
-     $tam_max = 50000; // 50 KBytes
+     $tam_max = 5000000; // 50 KBytes
      $tam = $_FILES['imagen']['size'];
      $mod = true; // Si vamos a modificar
  
@@ -143,72 +143,83 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
 ?>
  
 <!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."cabecera.php"; ?>
-<!-- Cuerpo de la página web -->
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
+<?php require_once VIEW_PATH."navbar.php"; ?>
+    <!-- Cuerpo de la página web --> 
+    <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
+        <div class="div-to-align">
+            <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data"> 
+            <fieldset> 
+                        <!-- Form Name -->
                         <h2>Añadir Productos</h2>
-                    </div>
-                    <p>Por favor rellene este formulario para añadir un nuevo producto a la base de datos de la tienda.</p>
-                    <!-- $nombre = $tipo = $email = $password = $admin = $foto = $stock = $f_alta = ""; -->
-                    <!-- Formulario-->
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                         <!-- Nombre-->
                         <div class="form-group <?php echo (!empty($nombreErr)) ? 'error: ' : ''; ?>">
-                            <label>Nombre</label>
+                        <label class="col-md-4 control-label" for="textinput">Nombre</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="nombre" class="form-control" value="<?php echo $nombre; ?>" 
                                 pattern="([^\s][A-zÀ-ž0-9\s]+)"
                                 minlength="3">
                             <span class="help-block"><?php echo $nombreErr;?></span>
                         </div>
+                        </div>
                         <!-- tipo-->
                         <div class="form-group <?php echo (!empty($tipoErr)) ? 'error: ' : ''; ?>">
-                            <label>tipo</label>
+                        <label class="col-md-4 control-label" for="textinput">Tipo</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="tipo" class="form-control" value="<?php echo $tipo; ?>" 
                                 pattern="([^\s][A-zÀ-ž0-9\s]+)"
                                 minlength="3">
                             <span class="help-block"><?php echo $tipoErr;?></span>
                         </div>
+                        </div>
                         <!-- distribuidor-->
                         <div class="form-group <?php echo (!empty($distribuidorErr)) ? 'error: ' : ''; ?>">
-                            <label>distribuidor</label>
+                        <label class="col-md-4 control-label" for="textinput">Distribuidor</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="distribuidor" class="form-control" value="<?php echo $distribuidor; ?>" 
                                 pattern="([^\s][A-zÀ-ž0-9\s]+)"
                                 minlength="3">
                             <span class="help-block"><?php echo $distribuidorErr;?></span>
                         </div>
+                        </div>
                         <!-- stock -->
                         <div class="form-group <?php echo (!empty($stockErr)) ? 'error: ' : ''; ?>">
-                            <label>stock</label>
+                        <label class="col-md-4 control-label" for="textinput">Stock</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="stock" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $stock; ?>">
                             <span class="help-block"><?php echo $stockErr;?></span>
                         </div>
+                        </div>
                         <!-- precio -->
                         <div class="form-group <?php echo (!empty($precioErr)) ? 'error: ' : ''; ?>">
-                            <label>precio</label>
+                        <label class="col-md-4 control-label" for="textinput">Precio</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="precio" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $precio; ?>">
                             <span class="help-block"><?php echo $precioErr;?></span>
                         </div>
+                        </div>
                         <!-- descuento -->
                         <div class="form-group <?php echo (!empty($descuentoErr)) ? 'error: ' : ''; ?>">
-                            <label>descuento</label>
+                        <label class="col-md-4 control-label" for="textinput">Descuento</label>  
+                                <div class="col-md-7">
                             <input type="text" required name="descuento" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $descuento; ?>">
                             <span class="help-block"><?php echo $descuentoErr;?></span>
                         </div>
+                        </div>
                          <!-- Foto-->
                          <div class="form-group <?php echo (!empty($imagenErr)) ? 'error: ' : ''; ?>">
-                        <label>Fotografía</label>
+                         <label class="col-md-4 control-label" for="textinput">Fotografia</label>  
+                                <div class="col-md-7">
                         <!-- Solo acepto imagenes jpg -->
                         <input type="file" required name="imagen" class="form-control-file" id="imagen" accept=".png, .jpg">    
                         <span class="help-block"><?php echo $imagenErr;?></span>    
                         </div>
+                        </div>
                         <!-- Botones --> 
+                        <div class="col-md-7">
                          <button type="submit" name= "aceptar" value="aceptar" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-save"></span>  Aceptar</button>
                          <button type="reset" value="reset" class="btn btn-info"> <span class="glyphicon glyphicon-repeat"></span>  Limpiar</button>
                         <a href="../Producto.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                        </div>
                     </form>
                 </div>
             </div>        

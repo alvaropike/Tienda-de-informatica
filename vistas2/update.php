@@ -189,17 +189,12 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 ?>
  
 <!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."cabecera.php"; ?>
-<!-- Cuerpo de la página web -->
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
+<?php require_once VIEW_PATH."navbar.php"; ?>
+    <!-- Cuerpo de la página web --> 
+        <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
+        <div class="div-to-align">
                         <h2>Actualizar productos</h2>
                     </div>
-                    <p>Por favor rellene este formulario para añadir un nuevo producto a la base de datos de la clase.</p>
-                    <!-- $nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = ""; -->
                     <!-- Formulario-->
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post" enctype="multipart/form-data">
                         <!-- Nombre-->
@@ -212,7 +207,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <!-- tipo-->
                         <div class="form-group <?php echo (!empty($tipoErr)) ? 'error: ' : ''; ?>">
-                            <label>tipo</label>
+                            <label>Tipo</label>
                             <input type="text" required name="tipo" class="form-control" value="<?php echo $tipo; ?>" 
                                 pattern="([^\s][A-zÀ-ž0-9\s]+)"
                                 minlength="3">
@@ -220,7 +215,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <!-- distribuidor-->
                         <div class="form-group <?php echo (!empty($distribuidorErr)) ? 'error: ' : ''; ?>">
-                            <label>distribuidor</label>
+                            <label>Distribuidor</label>
                             <input type="text" required name="distribuidor" class="form-control" value="<?php echo $distribuidor; ?>" 
                                 pattern="([^\s][A-zÀ-ž0-9\s]+)"
                                 minlength="3">
@@ -228,19 +223,19 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <!-- stock -->
                         <div class="form-group <?php echo (!empty($stockErr)) ? 'error: ' : ''; ?>">
-                            <label>stock</label>
+                            <label>Stock</label>
                             <input type="text" required name="stock" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $stock; ?>">
                             <span class="help-block"><?php echo $stockErr;?></span>
                         </div>
                         <!-- precio -->
                         <div class="form-group <?php echo (!empty($precioErr)) ? 'error: ' : ''; ?>">
-                            <label>precio</label>
+                            <label>Precio</label>
                             <input type="text" required name="precio" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $precio; ?>">
                             <span class="help-block"><?php echo $precioErr;?></span>
                         </div>
                         <!-- descuento -->
                         <div class="form-group <?php echo (!empty($descuentoErr)) ? 'error: ' : ''; ?>">
-                            <label>descuento</label>
+                            <label>Descuento</label>
                             <input type="text" required name="descuento" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $descuento; ?>">
                             <span class="help-block"><?php echo $descuentoErr;?></span>
                         </div>

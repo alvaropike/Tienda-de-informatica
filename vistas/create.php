@@ -145,7 +145,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
             <fieldset> 
                         <!-- Form Name -->
                         <legend>Añadir usuario</legend>
-
                         <!-- Nombre-->
                         <div class="form-group <?php echo (!empty($nombreErr)) ? 'error: ' : ''; ?>">
                             <label class="col-md-4 control-label" for="textinput">Nombre</label>  
@@ -212,7 +211,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                         </div>
                         </div>
                         <!-- Botones --> 
-                        <label class="col-md-4 control-label" for="submit">Enviar</label>
+                        
                         <div class="col-md-7">
                          <button type="submit" name= "aceptar" value="aceptar" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-save"></span>  Aceptar</button>
                          <button type="reset" value="reset" class="btn btn-info"> <span class="glyphicon glyphicon-repeat"></span>  Limpiar</button>

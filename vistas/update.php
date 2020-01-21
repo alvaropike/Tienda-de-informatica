@@ -223,17 +223,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <!-- Admin DESPLEGABLE-->
                         <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Admin</label>  
-                            <div class="col-md-7">
+                        <label>Admin</label>  
                             <select name="admin" class="form-control">
                                 <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
                                 <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
                             </select>
-                            </div>
                         </div>
                         <!-- telefono -->
                         <div class="form-group <?php echo (!empty($telefonoErr)) ? 'error: ' : ''; ?>">
-                            <label>telefono</label>
+                            <label>Telefono</label>
                             <input type="text" required name="telefono" class="form-control" pattern="([0-9]{9})" title="Solo numeros enteros positivos" value="<?php echo $telefono; ?>">
                             <span class="help-block"><?php echo $telefonoErr;?></span>
                         </div>

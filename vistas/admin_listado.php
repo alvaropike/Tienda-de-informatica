@@ -107,8 +107,7 @@ a:hover{text-decoration:none;}
                     } else{
                       // Menú normal
 
-                    }
-                    
+                    } 
                 }
                 echo "</tbody>";
                 echo "</table>";
@@ -134,4 +133,3 @@ a:hover{text-decoration:none;}
             echo "Es tu primera visita hoy";
     ?>
     </div>
-    <a href="index.php" class="btn btn-primary btn-default pull-right" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span> Administración General</a>

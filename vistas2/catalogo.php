@@ -1,113 +1,97 @@
-<?php
+<?php 
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
-require_once CONTROLLER_PATH . "ControladorCatalogo.php";
-require_once CONTROLLER_PATH . "ControladorProducto.php";
-require_once CONTROLLER_PATH . "Paginador.php";
-
-
-// Recogemos el tipo de catalogo
-$opcion = "";
-if (isset($_GET["tipo"]) && !empty(trim($_GET["tipo"]))) {
-    $tipo = trim($_GET["tipo"]);
-    switch ($tipo) {
-    case "Fuente":
-        $opcion= "Fuente";
-        break;
-    case "Grafica":
-        $opcion= "Grafica";
-        break;
-    case "Portatiles":
-        $opcion= "Portatiles";
-        break;
-    case "Ofertas":
-        $opcion= "Ofertas";
-        break;
-    }
-
-}
-// Marca o Modelo
-if (isset($_GET["filter"]) && !empty(trim($_GET["filter"]))) {
-    $filtro = $_GET["filter"];
-} else{
-    $filtro ="";
-}
-
-// Procesamos el buscador
-if (isset($_POST["filter"])) {
-    $filtro = $_POST["filter"];
-    $opcion = $_POST["opcion"];
-}
-
- // Consulta a realizar
-$controlador = ControladorCatalogo::getControlador();
-$consulta = $controlador->getConsultaCatalogo($filtro, $filtro, $opcion);
-//echo $consulta;
-
-// Configuramos el paginador
-$filas = 2;
-$columnas = 4;
-$limite = $filas * $columnas; // Dos filas de 4
-
-$pagina = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
-$enlaces = ( isset($_GET['limit']) ) ? $_GET['limit'] : 10;
-
-$paginador  = new Paginador($consulta, $limite);
-$resultados = $paginador->getDatos($pagina);
-
-
+require_once VIEW_PATH."navbar.php"; 
 ?>
 
-<!-- Codigo HTML -->
-<main role="main">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
 
-    <section class="page-header clearfix text-center">
-        <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <div class="form-group mx-sm-5 mb-2">
-                        <input type="text" class="form-control" id="buscar" name="filter" placeholder="Marca o Modelo">
-                    </div>
-                    <input type="hidden" name="opcion" value="<?php echo $opcion; ?>"/>
-                    <button type="submit" class="btn btn-primary mb-2"> <span class="glyphicon glyphicon-search"></span>  Buscar en <?php echo $opcion; ?></button>
-                </form>
-    </section>
+<style>
+@import "../css/catalogo.css";
+</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <div class="container">
-        
-        <?php
-        if (count( $resultados->datos)>0) {
-            // Contador de items
-            $item = 0;
-            // Inicio de Fila
-            echo $controlador->filaInicio();
-            // Sacamos los resultados
-            foreach($resultados->datos as $dato){
-                // Obtenemos el producto
-                $producto = new Producto($dato["ID"], $dato["TIPO"], $dato["MARCA"], $dato["MODELO"], $dato["DESCRIPCION"], $dato["PRECIO"], 
-                            $dato["STOCK"], $dato["OFERTA"], $dato["FOTO"]);
-                // Imprimimos los resultados
-                echo $controlador->getProducto($producto, base64_encode("principal.php"));
-                $item++;
-                if($item % $columnas == 0){
-                    $controlador->filaFin();
-                    echo $controlador->filaInicio();
-                }
-            }
-            $controlador->filaFin();
-            // Paginador
-                echo "<div class='text-center'>"; // Para centrar
-                echo "<ul class='pagination'>"; //  <ul class="paginationr">
-                    echo $paginador->crearLinks($enlaces, $filtro, $pagina);
-                echo "</ul>";
-                echo "</div>";
-            
-        } else {
-                // Si no hay nada seleccionado
-            echo "<p class='lead'><em>No se ha encontrado datos de productos.</em></p>";
-        }
-        ?>
-
-
+<div class="container">
+    <h3 class="h3">Catalogo de Productos </h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid2">
+                <div class="product-image2">
+                    <a href="#">
+                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-1.jpeg">
+                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-2.jpeg">
+                    </a>
+                    <ul class="social">
+                        <li><a href="#" data-tip="Ver Producto"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-tip="Añadir al carro"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <a class="add-to-cart" href="">Añadir al carro</a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Women's Designer Top</a></h3>
+                    <span class="price">$599.99</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid2">
+              <div class="product-image2">
+                  <a href="#">
+                      <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-3.jpeg">
+                      <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-4.jpeg">
+                  </a>
+                  <ul class="social">
+                      <li><a href="#" data-tip="Ver Producto"><i class="fa fa-eye"></i></a></li>
+                      <li><a href="#" data-tip="Añadir al carro"><i class="fa fa-shopping-cart"></i></a></li>
+                  </ul>
+                  <a class="add-to-cart" href="">Añadir al carro</a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Women's Yellow Top</a></h3>
+                    <span class="price">$699.99</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid2">
+                <div class="product-image2">
+                    <a href="#">
+                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-5.jpeg">
+                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
+                    </a>
+                    <ul class="social">
+                        <li><a href="#" data-tip="Ver Producto"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-tip="Añadir al carro"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <a class="add-to-cart" href="">Añadir al carro</a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Women's Designer Top</a></h3>
+                    <span class="price">$599.99</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid2">
+                <div class="product-image2">
+                    <a href="#">
+                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-7.jpeg">
+                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-8.jpeg">
+                    </a>
+                    <ul class="social">
+                        <li><a href="#" data-tip="Ver Producto"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-tip="Añadir al carro"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <a class="add-to-cart" href="">Añadir al carro</a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Women's Designer Top</a></h3>
+                    <span class="price">$599.99</span>
+                </div>
+            </div>
+        </div>
     </div>
-
-</main>
-
-<!-- Codigo HTML -->
+</div>
+<hr>

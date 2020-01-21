@@ -47,7 +47,7 @@ require_once ROOT_PATH."dirs.php";
   <img class="navbar-brand" src="https://s3.amazonaws.com/designmantic-logos/logos/2020/Jan/medium-4645-5e21d5ac477de.png" width="100px"></a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Usuario.php">Home</a>
+        <a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas2/catalogo.php">Home</a>
       </li>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos </a>
