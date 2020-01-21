@@ -62,7 +62,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <label>Descuento</label>
                             <p class="form-control-static"><?php echo $alumno->getDescuento(); ?></p>
                     </div>
-                    <a href="../Producto.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                    <a href="catalogo.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
             </div>
         </div>        
     </div>
