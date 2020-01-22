@@ -61,7 +61,7 @@ class ControladorAcceso {
                  $_SESSION['USUARIO']['foto']=$foto;
 
                  //echo $_SESSION['USUARIO']['email'];
-                 header("location: ../Usuario.php"); 
+                 header("location: ../vistas2/catalogo.php"); 
                  exit();              
             } else {
                 echo "<div class='wrapper'>";

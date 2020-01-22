@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     if(empty($descuentoVal)){
         $descuentoErr = "Por favor introduzca un descuento válido con solo carávteres numericos.";
         // Un ejemplo de validar expresiones regulares directamente desde PHP
-    } elseif(!preg_match("/([0-9]+)/", $descuentoVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
+    } elseif(!preg_match("/[0-9]{0,2}/", $descuentoVal)) { //filter_var($nombreVal, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([^\s][A-zÀ-ž\s]+$)/")))){
         $descuentoErr = "Por favor introduzca un descuento válido con solo carávteres numericos.";
     } else{
         $descuento= $descuentoVal;
@@ -156,7 +156,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                         <label class="col-md-4 control-label" for="textinput">Nombre</label>  
                                 <div class="col-md-7">
                             <input type="text" required name="nombre" class="form-control" value="<?php echo $nombre; ?>" 
-                                pattern="([^\s][A-zÀ-ž0-9\s]+)"
+                                pattern="([^\s][A-zÀ-ž0-9-\s]+)"
                                 minlength="3">
                             <span class="help-block"><?php echo $nombreErr;?></span>
                         </div>
@@ -201,7 +201,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                         <div class="form-group <?php echo (!empty($descuentoErr)) ? 'error: ' : ''; ?>">
                         <label class="col-md-4 control-label" for="textinput">Descuento</label>  
                                 <div class="col-md-7">
-                            <input type="text" required name="descuento" class="form-control" pattern="([0-9]+)" title="Solo numeros enteros positivos" value="<?php echo $descuento; ?>">
+                            <input type="text" required name="descuento" class="form-control" pattern="([0-9]{0,2})" title="Solo numeros enteros positivos" value="<?php echo $descuento; ?>">
                             <span class="help-block"><?php echo $descuentoErr;?></span>
                         </div>
                         </div>

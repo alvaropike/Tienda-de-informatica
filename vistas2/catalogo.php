@@ -46,7 +46,6 @@ $enlaces = ( isset($_GET['enlaces']) ) ? $_GET['enlaces'] : 10;
 
 //$lista = $controlador->listarAlumnos($nombre, $dni); //-- > Lo hará el paginador
 
-// Consulta a realizar -- esto lo cambiaré para la semana que viene
 $consulta = "SELECT * FROM producto WHERE nombre LIKE :nombre order by nombre";
 $parametros = array(':nombre' => "%".$nombre."%");
 $limite = 8; // Limite del paginador

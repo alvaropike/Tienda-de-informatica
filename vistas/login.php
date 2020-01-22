@@ -22,13 +22,13 @@ $controlador->salirSesion();
  
 ?>
 <!-- Cuerpo de la página web -->
-<div class="wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h2>Identificación de Usuario/a:</h2>
-                </div>
+<body>
+    <div id="login">
+        <h3 class="text-center text-black pt-5">Identificación de Usuario/a:</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">  
                 <!-- Formulario-->
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <!-- Nombre-->
@@ -42,7 +42,7 @@ $controlador->salirSesion();
                         <input type="password" required name="password" class="form-control" value="trenado">
                     </div>
                     <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-log-in"></span>  Entrar</button>
-                    <a href="../index.php" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                    <a href="../vistas2/catalogo.php" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                 </form>
             </div>
         </div>        

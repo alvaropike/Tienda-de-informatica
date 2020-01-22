@@ -11,3 +11,7 @@
 <a href="Usuario.php" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>Administración  Usuarios</a>
 <br>
 <a href="Producto.php" class="btn pull-right" target="_blank"><span class="glyphicon glyphicon-download"></span>Administración Productos</a>
+
+
+
+

@@ -133,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     }
 
 }else{
-    $admin = "no";
+    $admin = 'no';
 }
 ?>
 <!-- Cabecera de la página web -->
@@ -182,13 +182,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                             <input type="password" required name="password" class="form-control" value="<?php echo $password; ?>">
                             <span class="help-block"><?php echo $passwordErr;?></span>
                         </div>
-                        </div>
+                        </div>                  
                         <!-- Admin DESPLEGABLE-->
                         <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Admin</label>  
                             <div class="col-md-7">
                             <select name="admin"  class="form-control">
-                                <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
+                                <option value="si" <?php echo (strstr($admin, 'si')) ?:''; ?>>Si</option>
                                 <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
                             </select>
                             </div>
