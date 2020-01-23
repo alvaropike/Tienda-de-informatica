@@ -39,7 +39,6 @@ class ControladorAcceso {
         session_destroy();
     }
     
-    
     public function procesarIdentificacion($email, $password){
             $password = hash("sha256", $password);
 
@@ -53,16 +52,23 @@ class ControladorAcceso {
             $res = $bd->consultarBD($consulta,$parametros);
             $filas=$res->fetchAll(PDO::FETCH_OBJ);
             //var_dump($filas);
+            	
             if (count($filas) > 0) {
                  // abrimos las sesiones
-                //  session_start();
+                //session_start();
                  // Almacenamos el usuario en la sesion.
                  $_SESSION['USUARIO']['email']=$email;
-                 $_SESSION['USUARIO']['foto']=$foto;
+                //  $_SESSION['USUARIO']['foto']=$foto;
+                //  $_SESSION['USUARIO']=['foto'=>$foto];
+                // echo $_SESSION['USUARIO'];
+                // print_r ($filas);
+                // print_r ($res);
+                //  exit();
 
-                 //echo $_SESSION['USUARIO']['email'];
+                
                  header("location: ../vistas2/catalogo.php"); 
                  exit();              
+                              
             } else {
                 echo "<div class='wrapper'>";
                     echo "<div class='container-fluid'>";

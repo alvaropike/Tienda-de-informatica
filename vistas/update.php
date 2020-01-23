@@ -92,7 +92,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     if($_FILES['foto']['size']>0 && count($errores)==0){
         $propiedades = explode("/", $_FILES['foto']['type']);
         $extension = $propiedades[1];
-        $tam_max = 50000; // 50 KBytes
+        $tam_max = 5000000; // 50 KBytes
         $tam = $_FILES['foto']['size'];
         $mod = true;
         // Si no coicide la extensión

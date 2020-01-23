@@ -33,33 +33,33 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 <table>
                     <tr>
                         <td class="align-left">
-                            <label>Fotografía</label><br>
+                            <label class="font-weight-bold">Fotografía</label><br>
                             <img src='<?php echo "../imagenes/Productos/" . $alumno->getImagen() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
                         </td>
                     </tr>
                 </table>
-                    <div class="form-group">
-                        <label>Nombre</label>
+                    <div class="form-group ">
+                        <label class="font-weight-bold">Nombre</label>
                         <p class="form-control-static"><?php echo $alumno->getNombre(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Tipo</label>
+                        <label class="font-weight-bold">Tipo</label>
                             <p class="form-control-static"><?php echo $alumno->getTipo(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Distribuidor</label>
+                        <label class="font-weight-bold">Distribuidor</label>
                             <p class="form-control-static"><?php echo $alumno->getDistribuidor(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Stock</label>
+                        <label class="font-weight-bold">Stock</label>
                             <p class="form-control-static"><?php echo $alumno->getStock(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Precio</label>
+                        <label class="font-weight-bold">Precio</label>
                             <p class="form-control-static"><?php echo $alumno->getPrecio(); ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Descuento</label>
+                        <label class="font-weight-bold">Descuento</label>
                             <p class="form-control-static"><?php echo $alumno->getDescuento(); ?></p>
                     </div>
                     <a href="catalogo.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>

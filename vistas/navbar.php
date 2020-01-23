@@ -3,8 +3,15 @@
 ob_start();
 session_start();
 require_once CONTROLLER_PATH."ControladorUsuario.php";
-require_once ROOT_PATH."dirs.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
+require_once CONTROLLER_PATH."ControladorAcceso.php";
+
 ?>
+
+
+
+
+
 <style>
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
@@ -77,13 +84,16 @@ require_once ROOT_PATH."dirs.php";
             //  echo  '<img src="'.$_FILES['USUARIO']['foto'].'" class="rounded-circle z-depth-0" alt="avatar image" height="35">';
             // print_r($_SESSION['USUARIO']); 
             // print_r($_FILES['foto']['tmp_name']); 
-            // echo '<img src="../imagenes/usuarios/"' . $alumno->getFoto().'" class="rounded" class="img-thumbnail" width="48" height="auto">';
+
+            //echo '<img src="../imagenes/usuarios/"' . $alumno->getFoto().'" class="rounded" class="img-thumbnail" width="48" height="auto">';
+
+            // 
             echo '</a>';
             echo '<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">';
             //  echo  '<a class="dropdown-item" href="#">Hola Pepito</a>';
             // echo "<li><a href='ficha.php?id= ''>  ".$alumno->getNombre()."</a></li>";
              echo  '<a class="dropdown-item" href="#">Mi perfil</a>';
-             echo  '<a class="dropdown-item" href="#">Cerrar Sesion</a>';
+             echo  '<a class="dropdown-item" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/login.php">Cerrar Sesion</a>';
            echo  '</div>';
          echo  '</li>';
           }

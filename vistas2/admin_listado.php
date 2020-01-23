@@ -6,7 +6,7 @@ a:hover{text-decoration:none;}
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header clearfix">
-                    <h2 class="pull-left">Fichas de los usuarios</h2>
+                    <h2 class="pull-left">Fichas de los Productos</h2>
                 </div>
                 <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="no_imprimir">
                     <div class="form-group">

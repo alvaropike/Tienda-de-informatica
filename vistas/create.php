@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
     // Procesamos la foto
     $propiedades = explode("/", $_FILES['foto']['type']);
     $extension = $propiedades[1];
-    $tam_max = 50000; // 50 KBytes
+    $tam_max = 5000000; // 50 KBytes
     $tam = $_FILES['foto']['size'];
     $mod = true; // Si vamos a modificar
 

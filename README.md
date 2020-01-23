@@ -45,5 +45,8 @@ ademas ficha individual en pdf de usuarios y productos
 
 
 todo
-controlador alumno2
-controlador descarga2
+24/01
+Acceso identificado y gestion
+
+31/01
+Carro de compra y factura
