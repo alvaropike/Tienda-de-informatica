@@ -77,11 +77,11 @@ require_once CONTROLLER_PATH."ControladorAcceso.php";
           }else{
             echo '<li class="nav-item"><a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Usuario.php">Usuarios</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Producto.php">Productos</a></li>';
-            echo '<li class="nav-item"><a href="#" class="nav-link">'.$_SESSION['USUARIO']['email'].'</a></li>';
+            echo '<li class="nav-item"><a href="#" class="nav-link">'.$_SESSION['email'].'</a></li>';
             echo '<li class="nav-item"><a href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/login.php" class="nav-link"> Salir</a></li>';
             echo '<li class="nav-item avatar dropdown">';
             echo '<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-            //  echo  '<img src="'.$_FILES['USUARIO']['foto'].'" class="rounded-circle z-depth-0" alt="avatar image" height="35">';
+             echo  '<img src="../imagenes/usuarios/'.$_SESSION['imagen'].'" class="rounded-circle z-depth-0" alt="avatar image" height="3s5">';
             // print_r($_SESSION['USUARIO']); 
             // print_r($_FILES['foto']['tmp_name']); 
 

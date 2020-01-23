@@ -17,7 +17,7 @@ $controlador->salirSesion();
     // Procesamos la indetificación
     if (isset($_POST["email"]) && isset($_POST["password"])) {
         $controlador = ControladorAcceso::getControlador();
-        $controlador->procesarIdentificacion($_POST['email'], $_POST['password'], $_POST['foto']);
+        $controlador->procesarIdentificacion($_POST['email'], $_POST['password']);
     }
  
 ?>
@@ -49,3 +49,4 @@ $controlador->salirSesion();
     </div>
 </div>
 <br>
+

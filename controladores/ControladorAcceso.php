@@ -55,16 +55,15 @@ class ControladorAcceso {
             	
             if (count($filas) > 0) {
                  // abrimos las sesiones
-                //session_start();
+                 session_start();
                  // Almacenamos el usuario en la sesion.
+                 $usuario = new usuario($filas[0]->id, $filas[0]->nombre, $filas[0]->apellido, $filas[0]->email, $filas[0]->password, $filas[0]->admin, $filas[0]->imagen, $filas[0]->telefono, $filas[0]->f_alta);
+                 $_SESSION['nombre'] = $usuario->getNombre();
+                $_SESSION['apellido'] = $usuario->getApellido();
+                $_SESSION['admin'] = $usuario->getAdmin();
+                $_SESSION['email'] = $usuario->getEmail();
+                $_SESSION['imagen'] = $usuario->getImagen();
                  $_SESSION['USUARIO']['email']=$email;
-                //  $_SESSION['USUARIO']['foto']=$foto;
-                //  $_SESSION['USUARIO']=['foto'=>$foto];
-                // echo $_SESSION['USUARIO'];
-                // print_r ($filas);
-                // print_r ($res);
-                //  exit();
-
                 
                  header("location: ../vistas2/catalogo.php"); 
                  exit();              
