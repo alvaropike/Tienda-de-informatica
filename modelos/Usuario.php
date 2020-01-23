@@ -8,19 +8,19 @@ class Usuario {
     private $email;
     private $password;
     private $admin;
-    private $foto;
+    private $imagen;
 	private $telefono;
 	private $f_alta;
 	
     // Constructor
-    public function __construct($id, $nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta) {
+    public function __construct($id, $nombre, $apellido, $email, $password, $admin, $imagen, $telefono, $f_alta) {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->email = $email;
         $this->password = $password;
         $this->admin = $admin;
-        $this->foto = $foto;
+        $this->imagen = $imagen;
 		$this->telefono = $telefono;
 		$this->f_alta = $f_alta;
     }
@@ -74,12 +74,12 @@ class Usuario {
 		$this->admin = $admin;
 	}
 
-	function getFoto(){
-		return $this->foto;
+	function getImagen(){
+		return $this->imagen;
 	}
 
-	function setFoto($foto){
-		$this->foto = $foto;
+	function setImagen($imagen){
+		$this->imagen = $imagen;
 	}
 
 	function getTelefono(){

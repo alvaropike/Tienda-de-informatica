@@ -34,7 +34,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     <tr>
                         <td class="align-left">
                             <label>Fotografía</label><br>
-                            <img src='<?php echo "../imagenes/usuarios/" . $alumno->getFoto() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
+                            <img src='<?php echo "../imagenes/usuarios/" . $alumno->getImagen() ?>' class='rounded' class='img-thumbnail' width='48' height='auto'>
                         </td>
                     </tr>
                 </table>

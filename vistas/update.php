@@ -16,8 +16,8 @@ require_once CONTROLLER_PATH."ControladorImagen.php";
 require_once UTILITY_PATH."funciones.php";
  
 // Variables temporales
-$nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = $imagenAnterior = "";
-$nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $fotoErr = $telefonoErr = $f_alta = "";
+$nombre = $apellido = $email = $password = $admin = $imagen = $telefono = $f_alta = $imagenAnterior = "";
+$nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $imagenErr = $telefonoErr = $f_altaErr = "";
 $errores=[];
 // Procesamos la información obtenida por el get
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -52,19 +52,19 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     $emailVal = filtrado($_POST["email"]);
     if(empty($emailVal)){
         $emailErr = "Por favor introduzca email válido.";
+        $errores[]= $emailErr;
     } else{
         $email= $emailVal;
-        $errores[]= $emailErr;
     }
 
     // Procesamos el password
     $passwordVal = filtrado($_POST["password"]);
     if(empty($passwordVal) || strlen($passwordVal)<5){
         $passwordErr = "Por favor introduzca password válido y que sea mayor que 5 caracteres.";
+        $errores[]= $passwordErr;
     } else{
         $password= hash('sha256',$passwordVal);
         // $password= $passwordVal;
-        $errores[]= $passwordErr;
     }
 
     // Procsamos admin
@@ -89,59 +89,61 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
     // Procesamos la imagen
     // Si nos ha llegado algo mayor que cer
-    if($_FILES['foto']['size']>0 && count($errores)==0){
-        $propiedades = explode("/", $_FILES['foto']['type']);
+    if($_FILES['imagen']['size']>0 && count($errores)==0){
+        $propiedades = explode("/", $_FILES['imagen']['type']);
         $extension = $propiedades[1];
         $tam_max = 5000000; // 50 KBytes
-        $tam = $_FILES['foto']['size'];
+        $tam = $_FILES['imagen']['size'];
         $mod = true;
         // Si no coicide la extensión
         if($extension != "png" && $extension != "jpeg"){
             $mod = false;
-            $fotoErr= "Formato debe ser jpg/png";
+            $imagenErr= "Formato debe ser jpg/png";
         }
         // si no tiene el tamaño
         if($tam>$tam_max){
             $mod = false;
-            $fotoErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
+            $imagenErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
         }
+
         // Si todo es correcto, mod = true
         if($mod){
             // salvamos la imagen
-            $foto = md5($_FILES['foto']['tmp_name'] . $_FILES['foto']['name'].time()) . "." . $extension;
+            $imagen = md5($_FILES['imagen']['tmp_name'] . $_FILES['imagen']['name'].time()) . "." . $extension;
             $controlador = ControladorImagen::getControlador();
-            if(!$controlador->salvarImagen($foto)){
-                $fotoErr= "Error al procesar la foto y subirla al servidor";
+            if(!$controlador->salvarImagen($imagen)){
+                $imagenErr= "Error al procesar la imagen y subirla al servidor";
             }
 
             // Borramos la antigua
             $imagenAnterior = trim($_POST["imagenAnterior"]);
-            if($imagenAnterior!=$foto){
+            if($imagenAnterior!=$imagen){
                 if(!$controlador->eliminarImagen($imagenAnterior)){
-                    $fotoErr= "Error al borrar la antigua foto en el servidor";
+                    $imagenErr= "Error al borrar la antigua imagen en el servidor";
                 }
             }
         }else{
         // Si no la hemos modificado
-            $foto=trim($_POST["imagenAnterior"]);
+            $imagen=trim($_POST["imagenAnterior"]);
         }
 
     }else{
-        $foto=trim($_POST["imagenAnterior"]);
+        $imagen=trim($_POST["imagenAnterior"]);
     }
     
      // Chequeamos los errores antes de insertar en la base de datos
      if(empty($nombreErr) && empty($apellidoErr) && empty($emailErr) && empty($passwordErr) && 
-     empty($adminErr) && empty($fotoErr) && empty($telefonoErr) && empty($f_altaErr)){
+     empty($adminErr) && empty($imagenErr) && empty($telefonoErr) && empty($f_altaErr)){
      // creamos el controlador de alumnado
      $controlador = ControladorUsuario::getControlador();
-     $estado = $controlador->actualizarAlumno($id, $nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta);
+     $estado = $controlador->actualizarAlumno($id, $nombre, $apellido, $email, $password, $admin, $imagen, $telefono, $f_alta);
      if($estado){
         $errores=[];
          //El registro se ha lamacenado corectamente
          //alerta("Alumno/a creado con éxito");
          header("location: ../Usuario.php");
-         exit();
+        // echo $imagen;
+        exit();
      }else{
          header("location: error.php");
          exit();
@@ -163,10 +165,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             $email = $alumno->getEmail();
             $password = $alumno->getPassword();
             $admin = $alumno->getAdmin();
-            $foto = $alumno->getFoto();
             $telefono = $alumno->getTelefono();
-            $f_alta = $alumno->getF_alta();
-            $imagenAnterior = $foto;
+            $imagen = $alumno->getImagen();
+            $imagenAnterior = $imagen;
         }
         else{
         // hay un error
@@ -188,7 +189,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         <div class="div-to-align">
                         <h2>Actualizar Usuario/a</h2>
                     </div>
-                    <!-- $nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = ""; -->
                     <!-- Formulario-->
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post" enctype="multipart/form-data">
                         <!-- Nombre-->
@@ -236,11 +236,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <span class="help-block"><?php echo $telefonoErr;?></span>
                         </div>
                          <!-- Foto-->
-                         <div class="form-group <?php echo (!empty($fotoErr)) ? 'error: ' : ''; ?>">
+                         <div class="form-group <?php echo (!empty($imagenErr)) ? 'error: ' : ''; ?>">
                         <label>Fotografía</label>
                         <!-- Solo acepto imagenes jpg -->
-                        <input type="file" name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    
-                        <span class="help-block"><?php echo $fotoErr;?></span>    
+                        <input type="file" name="imagen" class="form-control-file" id="imagen" accept=".png, .jpg">    
+                        <span class="help-block"><?php echo $imagenErr;?></span>    
                         </div>
                         <!-- Botones --> 
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>

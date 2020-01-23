@@ -74,14 +74,14 @@ a:hover{text-decoration:none;}
                 echo "<th>Admin</th>";
                 echo "<th>Telefono</th>";
                 echo "<th>F_alta</th>";
-                echo "<th>Foto</th>";
+                echo "<th>Imagen</th>";
                 echo "</thead>";
                 echo "<tbody>";
                 // Recorremos los registros encontrados
                 foreach ($resultados->datos as $a) {
                 //foreach ($lista as $alumno) {
                     // Esto lo hago para no cambiaros el resto de codigo, si no podría usar a directamente
-                    $alumno = new Usuario($a->id, $a->nombre, $a->apellido, $a->email, $a->password, $a->admin, $a->foto, $a->telefono, $a->f_alta);
+                    $alumno = new Usuario($a->id, $a->nombre, $a->apellido, $a->email, $a->password, $a->admin, $a->imagen, $a->telefono, $a->f_alta);
                     // Pintamos cada fila
                     echo "<tr>";
                     echo "<td>" . $alumno->getNombre() . "</td>";
@@ -92,7 +92,7 @@ a:hover{text-decoration:none;}
                     echo "<td>" . $alumno->getAdmin() . "</td>";
                     echo "<td>" . $alumno->getTelefono() . "</td>";
                     echo "<td>" . $alumno->getF_alta() . "</td>";
-                    echo "<td><img src='imagenes/usuarios/".$alumno->getFoto()."' width='48px' height='48px'></td>";
+                    echo "<td><img src='imagenes/usuarios/".$alumno->getImagen()."' width='48px' height='48px'></td>";
                     echo "<td>";
                     
                     // Abrimos las sesiones para leerla

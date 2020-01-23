@@ -45,19 +45,6 @@ class ControladorImagen2 {
         }
         return false;;
     }
-    
-    function actualizarFoto(){
-        $fotoAnterior = trim($_POST["fotoAnterior"]);
-        // Procesamos la imagen
-        $extension = explode("/", $_FILES['foto']['type']);
-        $nombreFoto = md5($_FILES['foto']['tmp_name'] . $_FILES['foto']['name']) . "." . $extension[1];
-        if (!move_uploaded_file($_FILES['foto']['tmp_name'], ROOT_PATH . "/imagenes/productos/$nombreFoto")) {
-            //header("location: error.php");
-            //exit();
-            $nombreFoto = $fotoAnterior;
-        }
-        return $nombreFoto;
-    }
 
 }
 

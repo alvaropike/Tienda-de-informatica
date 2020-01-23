@@ -20,8 +20,8 @@ require_once UTILITY_PATH."funciones.php";
 
  
 // Variables temporales
-$nombre = $apellido = $email = $password = $admin = $foto = $telefono = $f_alta = "";
-$nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $fotoErr = $telefonoErr = $f_alta = "";
+$nombre = $apellido = $email = $password = $admin = $imagen = $telefono = $f_alta = "";
+$nombreErr = $apellidoErr = $emailErr = $passwordErr = $adminErr = $imagenErr = $telefonoErr = $f_alta = "";
  
 // Procesamos el formulario al pulsar el botón aceptar de esta ficha
 if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
@@ -85,40 +85,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
      // Procesamos fecha
     $f_alta = date("d/m/Y", time());
 
-    // Procesamos la foto
-    $propiedades = explode("/", $_FILES['foto']['type']);
+    // Procesamos la imagen
+    $propiedades = explode("/", $_FILES['imagen']['type']);
     $extension = $propiedades[1];
     $tam_max = 5000000; // 50 KBytes
-    $tam = $_FILES['foto']['size'];
+    $tam = $_FILES['imagen']['size'];
     $mod = true; // Si vamos a modificar
 
     // Si no coicide la extensión
     if($extension != "jpeg" && $extension != "png"){
         $mod = false;
-        $fotoErr= "Formato debe ser jpg/png";
+        $imagenErr= "Formato debe ser jpg/png";
     }
     // si no tiene el tamaño
     if($tam>$tam_max){
         $mod = false;
-        $fotoErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
+        $imagenErr= "Tamaño superior al limite de: ". ($tam_max/1000). " KBytes";
     }
 
     // Si todo es correcto, mod = true
     if($mod){
         // salvamos la imagen
-        $foto = md5($_FILES['foto']['tmp_name'] . $_FILES['foto']['name'].time()) . "." . $extension;
+        $imagen = md5($_FILES['imagen']['tmp_name'] . $_FILES['imagen']['name'].time()) . "." . $extension;
         $controlador = ControladorImagen::getControlador();
-        if(!$controlador->salvarImagen($foto)){
-            $fotoErr= "Error al procesar la foto y subirla al servidor";
+        if(!$controlador->salvarImagen($imagen)){
+            $imagenErr= "Error al procesar la imagen y subirla al servidor";
         }
     }
 
     // Chequeamos los errores antes de insertar en la base de datos
     if(empty($nombreErr) && empty($apellidoErr) && empty($emailErr) && empty($passwordErr) && 
-        empty($adminErr) && empty($fotoErr) && empty($telefonoErr) && empty($f_altaErr)){
+        empty($adminErr) && empty($imagenErr) && empty($telefonoErr) && empty($f_altaErr)){
         // creamos el controlador de alumnado
         $controlador = ControladorUsuario::getControlador();
-        $estado = $controlador->almacenarAlumno($nombre, $apellido, $email, $password, $admin, $foto, $telefono, $f_alta);
+        $estado = $controlador->almacenarAlumno($nombre, $apellido, $email, $password, $admin, $imagen, $telefono, $f_alta);
         if($estado){
             //El registro se ha lamacenado corectamente
             //alerta("Alumno/a creado con éxito");
@@ -201,13 +201,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["aceptar"]){
                             <span class="help-block"><?php echo $telefonoErr;?></span>
                         </div>
                         </div>
-                         <!-- Foto-->
-                         <div class="form-group <?php echo (!empty($fotoErr)) ? 'error: ' : ''; ?>">
-                         <label class="col-md-4 control-label" for="foto">Foto</label>  
+                         <!-- imagen-->
+                         <div class="form-group <?php echo (!empty($imagenErr)) ? 'error: ' : ''; ?>">
+                         <label class="col-md-4 control-label" for="imagen">imagen</label>  
                             <div class="col-md-7">
                         <!-- Solo acepto imagenes jpg -->
-                        <input type="file" required name="foto" class="form-control-file" id="foto" accept=".png, .jpg">    
-                        <span class="help-block"><?php echo $fotoErr;?></span>    
+                        <input type="file" required name="imagen" class="form-control-file" id="imagen" accept=".png, .jpg">    
+                        <span class="help-block"><?php echo $imagenErr;?></span>    
                         </div>
                         </div>
                         <!-- Botones --> 
