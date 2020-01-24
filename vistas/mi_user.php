@@ -1,6 +1,6 @@
 <?php
       error_reporting(E_ALL & ~E_NOTICE);
-//       session_start();
+      session_start();
 //       if(isset($_SESSION['USUARIO']['email'])){
 //         // Si es admin muestra la pagina
 
@@ -15,12 +15,51 @@ require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once CONTROLLER_PATH."ControladorImagen.php";
 require_once UTILITY_PATH."funciones.php";
 
-session_start();
-if(isset($_SESSION['USUARIO']['email'])){
-    if($_SESSION['admin'] != "si"){
+// session_start();
+// if(isset($_SESSION['USUARIO']['email'])){
+//     if($_SESSION['admin'] != "si"){
+//         header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+//         exit();
+//     }
+// }
+
+// Comprobamos que existe el id y que el mail se correspnde a este id antes de ir más lejos
+if(isset($_SESSION['id']) && isset($_SESSION['email']) && isset($_GET["id"])&& !empty(trim($_GET["id"])) && isset($_GET["email"]) && !empty(trim($_GET["email"]))) {
+    $id = decode($_GET["id"]);
+    $controlador = ControladorUsuario::getControlador();
+    $usuario = $controlador->buscarAlumno($id);
+    if (!is_null($usuario)) {
+        $id = $usuario->getId();
+        $nombre = $usuario->getNombre();
+        // $alias = $usuario->getAlias();
+        $email = $usuario->getEmail();
+        $pass = $usuario->getPassword();
+        // $dire = $usuario->getDireccion();
+        $admin = $usuario->getAdmin();
+        $imagen = $usuario->getImagen();
+        $imagenAnterior = $imagen;
+
+        $idSesion = $_SESSION['id'];
+        $emailSesion = $_SESSION['email'];
+
+        if(($email!==$emailSesion) || ($id!==$idSesion)){
+            // hay un error
+            alerta("Operación no permitida. No tiene permiso en estapágina", "error.php");
+            header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+            // exit();
+
+        }
+    } else {
+        // hay un error
+        alerta("Operación no permitida. Usuario no existe", "error.php");
         header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
         exit();
     }
+}else{
+    // hay un error
+    alerta("Operación no permitida. Página no encontrada", "error.php");
+    header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+    exit();
 }
 
 // Variables temporales
@@ -75,14 +114,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // $password= $passwordVal;
     }
 
-    // Procsamos admin
-    if(isset($_POST["admin"])){
-        $admin = filtrado($_POST["admin"]);
-    }else{
-        $adminErr = "Debe seleccionar si es admin o no";
-        $errores[]= $adminErr;
-    }
-
+    //Procesamos el admin
+    $admin="no";
     // Procesamos el telefono
     $telefonoVal = filtrado(($_POST["telefono"]));
     if(empty($telefonoVal)){
@@ -140,8 +173,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     }
     
      // Chequeamos los errores antes de insertar en la base de datos
-     if(empty($nombreErr) && empty($apellidoErr) && empty($emailErr) && empty($passwordErr) && 
-     empty($adminErr) && empty($imagenErr) && empty($telefonoErr) && empty($f_altaErr)){
+     if(empty($nombreErr) && empty($apellidoErr) && empty($emailErr) && empty($passwordErr)
+      && empty($imagenErr) && empty($telefonoErr) && empty($f_altaErr)){
      // creamos el controlador de alumnado
      $controlador = ControladorUsuario::getControlador();
      $estado = $controlador->actualizarAlumno($id, $nombre, $apellido, $email, $password, $admin, $imagen, $telefono, $f_alta);
@@ -149,7 +182,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $errores=[];
          //El registro se ha lamacenado corectamente
          //alerta("Alumno/a creado con éxito");
-         header("location: ../Usuario.php");
+         header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas2/catalogo.php");
         // echo $imagen;
         exit();
      }else{
@@ -158,6 +191,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
      }
     }else{
         alerta("Hay errores al procesar el formulario revise los errores");
+        exit();
     }
 
 }
@@ -230,13 +264,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <span class="help-block"><?php echo $passwordErr;?></span>
                         </div>
                         <!-- Admin DESPLEGABLE-->
-                        <div class="form-group">
-                        <label>Admin</label>  
-                            <select name="admin" class="form-control">
-                                <option value="si" <?php echo (strstr($admin, 'si')) ? 'selected' : ''; ?>>Si</option>
-                                <option value="no" <?php echo (strstr($admin, 'no')) ? 'selected' : ''; ?>>No</option>
-                            </select>
-                        </div>
+
                         <!-- telefono -->
                         <div class="form-group <?php echo (!empty($telefonoErr)) ? 'error: ' : ''; ?>">
                             <label>Telefono</label>
@@ -254,7 +282,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="hidden" name="imagenAnterior" value="<?php echo $imagenAnterior; ?>"/>
                         <button type="submit" value="aceptar" class="btn btn-warning"> <span class="glyphicon glyphicon-refresh"></span>  Modificar</button>
-                        <a href="../Usuario.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
+                        <a href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas2/Catalogo.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Volver</a>
                     </form>
                 </div>
             </div>        

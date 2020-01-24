@@ -5,13 +5,13 @@ require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-info
 require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once UTILITY_PATH."funciones.php";
 
-session_start();
-if(isset($_SESSION['USUARIO']['email'])){
-    if($_SESSION['admin'] != "si"){
-        header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
-        exit();
-    }
-}
+// session_start();
+// if(isset($_SESSION['USUARIO']['email'])){
+//     if($_SESSION['admin'] != "si"){
+//         header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+//         exit();
+//     }
+// }
 
 // Compramos la existencia del parámetro id antes de usarlo
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
