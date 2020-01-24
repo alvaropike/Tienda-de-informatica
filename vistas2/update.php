@@ -1,5 +1,5 @@
 <?php
-//       error_reporting(E_ALL & ~E_NOTICE);
+      error_reporting(E_ALL & ~E_NOTICE);
 //       session_start();
 //       if(isset($_SESSION['USUARIO']['email'])){
 //         // Si es admin muestra la pagina
@@ -14,6 +14,14 @@ require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-info
 require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
+
+session_start();
+if(isset($_SESSION['USUARIO']['email'])){
+    if($_SESSION['admin'] != "si"){
+        header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+        exit();
+    }
+}
  
 // Variables temporales
 $nombre = $tipo = $distribuidor = $stock = $precio = $descuento = $imagen = $imagenAnterior ="";

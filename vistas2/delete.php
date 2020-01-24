@@ -1,5 +1,5 @@
 <?php
-//       error_reporting(E_ALL & ~E_NOTICE);
+      error_reporting(E_ALL & ~E_NOTICE);
 //       session_start();
 //       if(isset($_SESSION['USUARIO']['email'])){
 //         // Si es admin muestra la pagina
@@ -15,6 +15,13 @@ require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
 
+session_start();
+if(isset($_SESSION['USUARIO']['email'])){
+    if($_SESSION['admin'] != "si"){
+        header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+        exit();
+    }
+}
 // Obtenemos los datos del alumno que nos vienen de la página anterior
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     // Cargamos el controlador de alumnos

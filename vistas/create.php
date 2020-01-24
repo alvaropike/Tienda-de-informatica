@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ALL & ~(E_STRICT|E_NOTICE));
+error_reporting(E_ALL & ~(E_STRICT|E_NOTICE));
 // error_reporting(E_ALL & ~E_NOTICE);
 // session_start();
 // if(!isset($_SESSION['USUARIO']['email'])){
@@ -16,8 +16,16 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once CONTROLLER_PATH."ControladorImagen.php";
-require_once UTILITY_PATH."funciones.php";
+// require_once CONTROLLER_PATH."ControladorAcceso.php";
+// require_once UTILITY_PATH."funciones.php";
 
+session_start();
+if(isset($_SESSION['USUARIO']['email'])){
+    if($_SESSION['admin'] != "si"){
+        header("location: /AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/error.php");
+        exit();
+    }
+}
  
 // Variables temporales
 $nombre = $apellido = $email = $password = $admin = $imagen = $telefono = $f_alta = "";
