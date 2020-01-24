@@ -63,7 +63,11 @@ class ControladorAcceso {
                 $_SESSION['admin'] = $usuario->getAdmin();
                 $_SESSION['email'] = $usuario->getEmail();
                 $_SESSION['imagen'] = $usuario->getImagen();
+                $_SESSION['id'] = $usuario->getId();
                  $_SESSION['USUARIO']['email']=$email;
+
+                //  print_r($_SESSION['id']);
+                //  exit();
                 
                  header("location: ../vistas2/catalogo.php"); 
                  exit();              

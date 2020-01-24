@@ -74,25 +74,17 @@ require_once CONTROLLER_PATH."ControladorAcceso.php";
           if(!isset($_SESSION['USUARIO']['email'])){
             echo '<li class="nav-item"><a href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/create.php" class="nav-link">Registrarse</a></li>';
             echo '<li class="nav-item"><a href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/login.php" class="nav-link"> Login</a></li>';
-          }else{
+          }if ((isset($_SESSION['USUARIO']['email'])) && (($_SESSION['admin'])=="si")){
             echo '<li class="nav-item"><a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Usuario.php">Usuarios</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Producto.php">Productos</a></li>';
+          }if ((isset($_SESSION['USUARIO']['email'])) && ((($_SESSION['admin'])=="si") || (($_SESSION['admin'])=="no"))){
             echo '<li class="nav-item"><a href="#" class="nav-link">'.$_SESSION['email'].'</a></li>';
-            echo '<li class="nav-item"><a href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/login.php" class="nav-link"> Salir</a></li>';
             echo '<li class="nav-item avatar dropdown">';
             echo '<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-             echo  '<img src="../imagenes/usuarios/'.$_SESSION['imagen'].'" class="rounded-circle z-depth-0" alt="avatar image" height="3s5">';
-            // print_r($_SESSION['USUARIO']); 
-            // print_r($_FILES['foto']['tmp_name']); 
-
-            //echo '<img src="../imagenes/usuarios/"' . $alumno->getFoto().'" class="rounded" class="img-thumbnail" width="48" height="auto">';
-
-            // 
+             echo  '<img src="/AppWeb/tiendaInformatica/Tienda-de-informatica/imagenes/usuarios/'.$_SESSION['imagen'].'" class="rounded-circle z-depth-0" alt="avatar image" height="35">';
             echo '</a>';
             echo '<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">';
-            //  echo  '<a class="dropdown-item" href="#">Hola Pepito</a>';
-            // echo "<li><a href='ficha.php?id= ''>  ".$alumno->getNombre()."</a></li>";
-             echo  '<a class="dropdown-item" href="#">Mi perfil</a>';
+             echo  '<a class="dropdown-item" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/read.php?id='.encode($_SESSION['id']).'">Mi perfil</a>';
              echo  '<a class="dropdown-item" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas/login.php">Cerrar Sesion</a>';
            echo  '</div>';
          echo  '</li>';
