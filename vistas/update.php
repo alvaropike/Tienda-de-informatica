@@ -226,7 +226,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <!-- Password -->
                         <div class="form-group <?php echo (!empty($passwordErr)) ? 'error: ' : ''; ?>">
                             <label>Contraseña</label>
-                            <input type="password" required name="password" class="form-control" value="<?php echo $password; ?>">
+                            <input type="password" required name="password" class="form-control" value="">
                             <span class="help-block"><?php echo $passwordErr;?></span>
                         </div>
                         <!-- Admin DESPLEGABLE-->

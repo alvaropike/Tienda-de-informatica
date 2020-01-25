@@ -41,7 +41,7 @@ class ControladorDescarga{
             $alumno->appendChild($doc->createElement('password', str_repeat("*",strlen($a->getPassword()))));
             $alumno->appendChild($doc->createElement('admin', $a->getAdmin()));
             $alumno->appendChild($doc->createElement('telefono', $a->getTelefono()));
-            $alumno->appendChild($doc->createElement('foto', $a->getFoto()));
+            $alumno->appendChild($doc->createElement('imagen', $a->getImagen()));
             $alumno->appendChild($doc->createElement('f_alta', $a->getF_alta()));
 
             //Insertamos
@@ -71,7 +71,7 @@ class ControladorDescarga{
             $sal.="<th>Admin</th>";
             $sal.="<th>Fecha de alta</th>";
             $sal.="<th>Telefono</th>";
-            $sal.="<th>Foto</th>";
+            $sal.="<th>Imagen</th>";
             $sal.="</tr>";
             $sal.="</thead>";
             $sal.="<tbody>";
@@ -87,7 +87,7 @@ class ControladorDescarga{
                 $sal.="<td>" . $alumno->getF_alta() . "</td>";
                 $sal.="<td>" . $alumno->getTelefono() . "</td>";
                 // Para sacar una imagen hay que decirle el directprio real donde está
-                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/tiendaInformatica/Tienda-de-informatica/imagenes/usuarios/".$alumno->getFoto()."'  style='max-width: 12mm; max-height: 12mm'></td>";
+                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/tiendaInformatica/Tienda-de-informatica/imagenes/usuarios/".$alumno->getImagen()."'  style='max-width: 12mm; max-height: 12mm'></td>";
                 $sal.="</tr>";
             }
             $sal.="</tbody>";
@@ -118,7 +118,7 @@ class ControladorDescarga{
             $sal.="<th>Admin</th>";
             $sal.="<th>Fecha alta</th>";
             $sal.="<th>telefono</th>";
-            $sal.="<th>Foto</th>";
+            $sal.="<th>Imagen</th>";
             $sal.="</tr>";
             $sal.="</thead>";
             $sal.="<tbody>";
@@ -134,7 +134,7 @@ class ControladorDescarga{
                 $sal.="<td>" . $alumno->getF_alta() . "</td>";
                 $sal.="<td>" . $alumno->getTelefono() . "</td>";
                 // Para sacar una imagen hay que decirle el directprio real donde está
-                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/tiendaInformatica/Tienda-de-informatica/imagenes/usuarios/".$alumno->getFoto()."'  style='max-width: 12mm; max-height: 12mm'></td>";
+                $sal.="<td><img src='".$_SERVER['DOCUMENT_ROOT'] . "/AppWeb/tiendaInformatica/Tienda-de-informatica/imagenes/usuarios/".$alumno->getImagen()."'  style='max-width: 12mm; max-height: 12mm'></td>";
                 $sal.="</tr>";
             }
             $sal.="</tbody>";

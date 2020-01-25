@@ -115,7 +115,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     }
 
     //Procesamos el admin
-    $admin="no";
+
+    if($_SESSION['admin'] == "no"){
+        $admin ="no";
+    }if($_SESSION['admin'] == "si"){
+        $admin = "si";
+    }
+
+
     // Procesamos el telefono
     $telefonoVal = filtrado(($_POST["telefono"]));
     if(empty($telefonoVal)){
