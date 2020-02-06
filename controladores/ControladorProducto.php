@@ -180,35 +180,5 @@ class ControladorProducto {
         $bd->cerrarBD();
         return $estado;
     }
-
-
-    // public function productoTipo($tipo){
-    //     $bd = ControladorBD::getControlador();
-    //     $bd->abrirBD();
-    //     $consulta = "SELECT * FROM producto  WHERE tipo = :tipo";
-    //     $parametros = array(':tipo' => $tipo);
-    //     // Obtenemos las filas directamente como objetos con las columnas de la tabla
-    //     $res = $bd->consultarBD($consulta,$parametros);
-    //     $filas=$res->fetchAll(PDO::FETCH_OBJ);
-    //     if (count($filas) > 0) {
-    //         // abrimos las sesiones
-            
-    //         session_start();
-    //         // Almacenamos el usuario en la sesion.
-    //         $producto = new Producto($filas[0]->id, $filas[0]->nombre, $filas[0]->tipo, $filas[0]->distribuidor, $filas[0]->stock, $filas[0]->precio, $filas[0]->descuento, $filas[0]->imagen);
-    //         $_SESSION['tipo'] = $producto->getTipo();
-
-    //        //  print_r($_SESSION['tipo']);
-    //        //  exit();
-           
-    //         header("location: ../vistas2/catalogo.php"); 
-    //         exit();              
-                         
-    //    } else {
-    //         echo"ERROR AL PROCESAR EL PRODUCTO";
-    //         exit();
-    //     }
-
-    // }
-    
+  
 }

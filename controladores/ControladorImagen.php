@@ -45,8 +45,6 @@ class ControladorImagen {
         }
         return false;;
     }
-    
-
 }
 
 ?>

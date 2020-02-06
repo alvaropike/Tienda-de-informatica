@@ -65,32 +65,13 @@ class ControladorAcceso {
                 $_SESSION['imagen'] = $usuario->getImagen();
                 $_SESSION['id'] = $usuario->getId();
                  $_SESSION['USUARIO']['email']=$email;
-
-                //  print_r($_SESSION['id']);
-                //  exit();
                 
                  header("location: ../vistas2/catalogo.php"); 
                  exit();              
                               
             } else {
-                echo "<div class='wrapper'>";
-                    echo "<div class='container-fluid'>";
-                        echo "<div class='row'>";
-                            echo "<div class='col-md-12'>";
-                                echo "<div class='page-header'>";
-                                     echo "<h1>Usuario/a incorrecto</h1>";
-                                 echo "</div>";
-                                echo "<div class='alert alert-warning fade in'>";
-                                    echo "<p>Lo siento, el emial o password es incorrecto. Por favor <a href='login.php' class='alert-link'>regresa</a> e inténtelo de nuevo.</p>";
-                                echo "</div>";
-                            echo "</div>";
-                        echo "</div>";
-                    echo "</div>";
-                echo "</div>";
+                    echo "<h1>Usuario/a incorrecto</h1>";
                 exit();
             }
     }
-    
-    
-
 }

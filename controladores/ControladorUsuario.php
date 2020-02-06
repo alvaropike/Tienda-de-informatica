@@ -101,19 +101,18 @@ class ControladorUsuario {
         
         $parametros= array(':nombre'=>$nombre,':apellido'=>$apellido, ':email'=>$email, ':password'=>$password, ':admin'=>$admin,':imagen'=>$imagen,
                             ':telefono'=>$telefono, ':f_alta'=>$f_alta);
-
-        // $consulta2 = "SELECT count(nombre) FROM usuario where nombre = :nombre";
-        // $parametros2 = array(':nombre' => $nombre);
-        // $result = $bd->consultarBD($consulta2,$parametros2); 
-        // $row = $result->fetch(PDO::FETCH_NUM);
-        // if ($row[0] == 0) {
+        $consulta2 = "SELECT count(email) FROM usuario where email = :email";
+        $parametros2 = array(':email' => $email);
+        $result = $bd->consultarBD($consulta2,$parametros2); 
+        $row = $result->fetch(PDO::FETCH_NUM);
+        if ($row[0] == 0) {
             $estado = $bd->actualizarBD($consulta,$parametros);
             $bd->cerrarBD();
             return $estado;
-        // }else{
-        //     return null;
-        //     exit();
-        // }
+        }else{
+            return null;
+            exit();
+        }
     }
     
     public function buscarAlumno($id){ 
