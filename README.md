@@ -1,6 +1,6 @@
 # Tienda-de-informatica
 
-Tienda de informatica
+<b>Tienda de informatica</b>
 
 Web de informatica con CRUD desarrollada en PHP y Bootstrap
 
