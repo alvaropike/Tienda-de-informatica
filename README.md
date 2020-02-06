@@ -1,7 +1,9 @@
 # Tienda-de-informatica
 
 Tienda de informatica
+
 Web de informatica con CRUD desarrollada en PHP y Bootstrap
+
 
 Tecnologias utilizadas
 PHP 7.3.9	
@@ -12,6 +14,7 @@ Bootstrap 4.4.1
 MariaDB 10.4.6
 Apache 2.4.41
 phpMyAdmin 4.9.0.1
+
 
 
 Ejecución
