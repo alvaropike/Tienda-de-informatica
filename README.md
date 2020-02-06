@@ -5,7 +5,6 @@ Web de informatica con CRUD desarrollada en PHP y Bootstrap
 
 
 <b>Tecnologias utilizadas</b></br>
-
 PHP 7.3.9	</br>
 Composer 1.9.3 </br>
 HTML 5 </br>
