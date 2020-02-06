@@ -19,7 +19,7 @@ a:hover{text-decoration:none;}
                     <!-- Aquí va el nuevo botón para dar de alta, podría ir al final -->
                     <a href="utilidades/descargar2.php?opcion=PDF&id=all" class="btn btn-rounded btn-primary" target="_blank">pdf<i class="fas far fa-file-pdf pl-1"></i></a>
                     <a href="utilidades/descargar2.php?opcion=XML&id=all" class="btn btn-rounded btn-primary" target="_blank">XML<i class="fas fas fa-file-alt pl-1"></i></a>
-                    <a href="vistas2/create.php" class="btn btn-success"><span></span>  Añadir Usuario/a <i class="fas fa-plus-circle"></i></a>                
+                    <a href="vistas2/create.php" class="btn btn-success"><span></span>  Añadir Productos <i class="fas fa-plus-circle"></i></a>                
                 </form>
             </div>
             <!-- Linea para dividir -->

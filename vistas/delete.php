@@ -44,7 +44,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         //Se ha borrado y volvemos a la página principal
        // Debemos borrar la foto del alumno
        $controlador = ControladorImagen::getControlador();
-       if($controlador->eliminarImagen($alumno->getFoto())){
+       if($controlador->eliminarImagen($alumno->getImagen())){
             header("location: ../Usuario.php");
             exit();
        }else{

@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` text COLLATE utf8_spanish_ci NOT NULL,
   `password` text COLLATE utf8_spanish_ci NOT NULL,
   `admin` text COLLATE utf8_spanish_ci NOT NULL,
-  `foto` int(11) NOT NULL,
+  `imagen` text COLLATE utf8_spanish_ci NOT NULL,
   `telefono` text COLLATE utf8_spanish_ci NOT NULL,
   `f_alta` text COLLATE utf8_spanish_ci NOT NULL,
   UNIQUE KEY `id` (`id`)

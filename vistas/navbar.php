@@ -2,14 +2,10 @@
 <?php
 ob_start();
 session_start();
-require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
+require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once CONTROLLER_PATH."ControladorAcceso.php";
 ?>
-
-
-
-
 
 <style>
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
@@ -54,17 +50,6 @@ require_once CONTROLLER_PATH."ControladorAcceso.php";
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas2/catalogo.php">Home</a>
-      </li>
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <a class="dropdown-item" href="catalogo.php?tipo=Fuente">Fuentes de alimentación</a>
-          <a class="dropdown-item" href="catalogo.php?tipo=Grafica">Graficas</a>
-          <a class="dropdown-item" href="catalogo.php?tipo=Portatiles">Portatiles</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="catalogo.php?tipo=Ofertas">Ofertas</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
