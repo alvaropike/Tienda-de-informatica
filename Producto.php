@@ -11,12 +11,13 @@
     require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
     require_once CONTROLLER_PATH."ControladorAcceso.php";
     require_once CONTROLLER_PATH."ControladorUsuario.php";
+    require_once VIEW_PATH."cabecera.php"; 
 
 
-    if ( ($_SESSION['admin'])=="si"){
-        require_once VIEW_PATH2."principal.php";
+    if ((($_SESSION['admin'])=="si") && (isset($_SESSION['USUARIO']['email']))){
+        require_once VIEW_PATH2."admin_listado.php";
 
-    }else if ( ($_SESSION['admin'])=="no"){
+    }else{
         header("location: vistas/error.php");
     }
     
