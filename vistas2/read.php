@@ -4,7 +4,7 @@ error_reporting(E_ALL & ~(E_STRICT|E_NOTICE));
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
 require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once UTILITY_PATH."funciones.php";
-
+require_once VIEW_PATH."cabecera.php"; 
 // session_start();
 // if(isset($_SESSION['USUARIO']['email'])){
 //     if($_SESSION['admin'] != "si"){
@@ -28,7 +28,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 ?>
 
 <!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."cabecera.php"; ?>
+
 <!-- Cuerpo de la página web -->
 <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
         <div class="div-to-align">

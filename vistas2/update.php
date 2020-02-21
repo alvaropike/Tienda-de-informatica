@@ -14,6 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-info
 require_once CONTROLLER_PATH."ControladorProducto.php";
 require_once CONTROLLER_PATH."ControladorImagen2.php";
 require_once UTILITY_PATH."funciones.php";
+require_once VIEW_PATH."navbar.php"; 
 
 session_start();
 if(isset($_SESSION['USUARIO']['email'])){
@@ -197,7 +198,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 ?>
  
 <!-- Cabecera de la página web -->
-<?php require_once VIEW_PATH."navbar.php"; ?>
+
     <!-- Cuerpo de la página web --> 
         <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper justify-content-center align-items-center">
         <div class="div-to-align">

@@ -175,8 +175,17 @@ class ControladorUsuario {
             WHERE id=:id";
         $parametros = array(':id'=>$id, ':nombre'=>$nombre,':apellido'=>$apellido, ':email'=>$email, ':password'=>$password,':admin'=>$admin,
                             ':imagen'=>$imagen, ':telefono'=>$telefono);
-        $estado = $bd->actualizarBD($consulta,$parametros);
-        $bd->cerrarBD();
-        return $estado;
+        $consulta2 = "SELECT count(email) FROM usuario where email = :email";
+        $parametros2 = array(':email' => $email);
+        $result = $bd->consultarBD($consulta2,$parametros2); 
+        $row = $result->fetch(PDO::FETCH_NUM);
+        if ($row[0] == 0 or $_SESSION['email'] == $email) {
+            $estado = $bd->actualizarBD($consulta,$parametros);
+            $bd->cerrarBD();
+            return $estado;
+        }else{
+            echo '<script type="text/javascript">alert("El E-mail ' . $email . ' Ya está en el sistema")</script>';
+            exit();
+        }
     }
 }

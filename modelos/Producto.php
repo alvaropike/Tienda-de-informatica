@@ -10,6 +10,7 @@ class Producto {
     private $precio;
     private $descuento;
 	private $imagen;
+	private $cantidad = 0;
 	
     // Constructor
     public function __construct($id, $nombre, $tipo, $distribuidor, $stock, $precio, $descuento, $imagen) {
@@ -87,6 +88,21 @@ class Producto {
 	function setImagen($imagen){
 		$this->imagen = $imagen;
 	}
-    
-}
 
+	function getCantidad(){
+		return $this->cantidad;
+	}
+
+	function setCantidad($cantidad){
+		$this->cantidad = $cantidad;
+	}
+
+	function sumCarrito(){
+		$this->cantidad++;
+	}
+	
+	function resCarrito(){
+		$this->cantidad--;
+	}
+
+}

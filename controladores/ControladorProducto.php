@@ -12,10 +12,10 @@
  * @author link
  */
 
-require_once MODEL_PATH."Producto.php";
+
 require_once CONTROLLER_PATH."ControladorBD.php";
 require_once UTILITY_PATH."funciones.php";
-
+// require_once MODEL_PATH."Producto.php";
 class ControladorProducto {
 
      // Variable instancia para Singleton

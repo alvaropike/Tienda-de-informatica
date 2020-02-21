@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-info
 require_once CONTROLLER_PATH . "ControladorProducto.php";
 require_once MODEL_PATH . "usuario.php";
 require_once VENDOR_PATH . "autoload.php";
+require MODEL_PATH.'Producto.php';
 use Spipu\Html2Pdf\HTML2PDF;
 
 class ControladorDescarga2{

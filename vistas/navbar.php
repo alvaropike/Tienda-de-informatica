@@ -1,10 +1,11 @@
 
 <?php
 ob_start();
-session_start();
 require_once $_SERVER['DOCUMENT_ROOT']."/AppWeb/tiendaInformatica/Tienda-de-informatica/dirs.php";
+require MODEL_PATH.'Producto.php';
 require_once CONTROLLER_PATH."ControladorUsuario.php";
 require_once CONTROLLER_PATH."ControladorAcceso.php";
+session_start();
 ?>
 
 <style>
@@ -62,6 +63,9 @@ require_once CONTROLLER_PATH."ControladorAcceso.php";
             echo '<li class="nav-item"><a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Usuario.php">Usuarios</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="/AppWeb/tiendaInformatica/Tienda-de-informatica/Producto.php">Productos</a></li>';
           }if ((isset($_SESSION['USUARIO']['email'])) && ((($_SESSION['admin'])=="si") || (($_SESSION['admin'])=="no"))){
+            if ((isset($_SESSION['carrito'])) && sizeof($_SESSION['carrito']) > 0){
+              echo '<li class="nav-item"><a href="/AppWeb/tiendaInformatica/Tienda-de-informatica/vistas2/carrito.php" class="nav-link fas fa-shopping-cart"> '.sizeof($_SESSION['carrito']).'</a></li>';
+            }
             echo '<li class="nav-item"><a href="#" class="nav-link">'.$_SESSION['email'].'</a></li>';
             echo '<li class="nav-item avatar dropdown">';
             echo '<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
