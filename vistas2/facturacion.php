@@ -45,7 +45,7 @@ require_once CONTROLLER_PATH."ControladorProducto.php";
     <div class="toolbar hidden-print">
         <div class="text-right no-print">
             <a href="javascript:window.print()" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir </a>
-            <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> PDF</button>
+            <!-- <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> PDF</button> -->
             <a href="../utilidades/descargar2.php?opcion=Factura&id=all" class="btn btn-rounded btn-primary ml-auto" target="_blank"><span class="fas far fa-file-pdf pl-1"></span>  PDF</a>
             <hr>
         </div>
