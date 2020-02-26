@@ -11,44 +11,58 @@ $controlador = ControladorProducto::getControlador();
 
 if (isset($_GET["id"]) && !empty($_GET["id"])){
     $id = decode($_GET['id']);
-    if(isset($_SESSION['carrito'])){
-        $carrito = $_SESSION['carrito'];
-
-        $prod = $controlador->buscarAlumno($id);
-        // print_r ($producto);
-        $contador = 0;
-        $index = 0;
-        $existe=false;
-        foreach ($carrito as $producto) {
-            // echo"</br></br>";
-            // print_r($producto->getId());
-            if($prod->getId() == $producto->getId()) {
-                // echo"</br></br>me añado";
-                $prodMod = $producto;
-                $prodMod->sumCarrito();
-               $existe=true;
-               $index = $contador;
+        if(isset($_SESSION['carrito'])){
+            $carrito = $_SESSION['carrito'];
+                $prod = $controlador->buscarAlumno($id);
+                // print_r ($producto);
+                $contador = 0;
+                $index = 0;
+                $existe=false;
+                foreach ($carrito as $producto) {
+                    // echo"</br></br>";
+                    // print_r($producto->getId());
+                    if($prod->getId() == $producto->getId()) {
+                        // echo"</br></br>me añado";
+                        $prodMod = $producto;
+                        $stock = $controlador->buscarStock($id);
+                        if ($stock >= $producto->getCantidad()+1){
+                            $prodMod->sumCarrito();
+                            $index = $contador;
+                        }else{
+                            
+                            header("location: ../vistas2/catalogo.php?stock=".$producto->getNombre()); 
+                            exit();
+                        }
+                    $existe=true;
+                    }
+                    $contador++;
+                }
+                if($existe){ 
+                    //producto existente
+                    $carrito[$index] = $prodMod;
+                } else {
+                    //producto nuevo que se añade al final
+                    $prod->sumCarrito();
+                    $carrito[sizeof($carrito)] = $prod;
+                }
+                $_SESSION['carrito'] = $carrito;
+        }else{
+            // echo "</br></br>me añado, soy un producto nuevo" ;
+            $producto = $controlador->buscarAlumno($id);
+            if ($producto->getStock() >0){
+                $producto->sumCarrito();
+                $carrito[0]=$producto;
+                $_SESSION['carrito'] = $carrito; 
+            }else{
+                            
+                header("location: ../vistas2/catalogo.php?stock=".$producto->getNombre()); 
+                exit();
             }
-            $contador++;
         }
-        if($existe){ 
-            $carrito[$index] = $prodMod;
-        } else {
-            $prod->sumCarrito();
-            $carrito[sizeof($carrito)] = $prod;
-        }
-        $_SESSION['carrito'] = $carrito;
-    }else{
-        // echo "</br></br>me añado, soy un producto nuevo" ;
-        $producto = $controlador->buscarAlumno($id);
-        $producto->sumCarrito();
-        $carrito[0]=$producto;
-        $_SESSION['carrito'] = $carrito; 
-    }
-    sleep(1);
-    header("location: ../vistas2/catalogo.php?add=si"); 
-
+        sleep(1);
+        header("location: ../vistas2/catalogo.php"); 
 }
+
 
 
 if (isset($_REQUEST['borrarPr'])) {
@@ -107,25 +121,31 @@ if (isset($_REQUEST['resCantidad'])) {
 
 if (isset($_REQUEST['sumCantidad'])) {
     $id = $_REQUEST['idprod'];
-    
-    $carrito = $_SESSION['carrito'];
-    $prod = $controlador->buscarAlumno($id);
-        $contador = 0;
-        $index = 0;
-        foreach ($carrito as $producto) {
-            if($prod->getId() == $producto->getId()) {
-                $prodMod = $producto;
-                $prodMod->sumCarrito();
-                $index = $contador;
+        $carrito = $_SESSION['carrito'];
+        $prod = $controlador->buscarAlumno($id);
+            $contador = 0;
+            $index = 0;
+            foreach ($carrito as $producto) {
+                if($prod->getId() == $producto->getId()) {
+                    $prodMod = $producto;
+                    $stock = $controlador->buscarStock($id);
+                    if ($stock >= $producto->getCantidad()+1){
+                        $prodMod->sumCarrito();
+                        $index = $contador;
+                    }else{
+                        
+                        header("location: ../vistas2/carrito.php?stock=".$producto->getNombre()); 
+                        exit();
+                    }
+                }
+                $contador++;
             }
-            $contador++;
-        }
 
-        $carrito[$index] = $prodMod;
+            $carrito[$index] = $prodMod;
 
-        $_SESSION['carrito'] = $carrito;
+            $_SESSION['carrito'] = $carrito;
 
-        header("location: ../vistas2/carrito.php"); 
+            header("location: ../vistas2/carrito.php");
 }
 
 if (isset($_REQUEST['vaciarCarrito'])){

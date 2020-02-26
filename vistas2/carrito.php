@@ -81,12 +81,16 @@ if ($_SESSION['carrito'] <= 0) {
         $totalIVA=0;
         $total=0;
         $IVA=0;
+        $descuentoTotal =0;
         foreach ($carrito as $producto) {
             $precio=$producto->getCantidad() * $producto->getPrecio();  
             $IVA=$IVA+($precio-($precio/1.21));
             $total=$total+($precio/1.21);
             // $totalIVA=$totalIVA+$IVA+$total;     
             $totalIVA=$total+$IVA;
+            if($producto->getDescuento() >0){
+                $descuentoTotal = $descuentoTotal+$producto->getPrecio()*$producto->getCantidad()*$producto->getDescuento()/100;
+            }
         }
     ?>
 
@@ -108,10 +112,16 @@ if ($_SESSION['carrito'] <= 0) {
               </tr>
               <tr>
                 <td class="left">
+                  <strong>Descuento</strong>
+                </td>
+                <td class="right"><?=(round($descuentoTotal,2))?> €</td>
+              </tr>
+              <tr>
+                <td class="left">
                   <strong>Total</strong>
                 </td>
                 <td class="right">
-                  <strong><?=(round($totalIVA,2))?> €</strong>
+                  <strong><?=(round($totalIVA,2)-$descuentoTotal)?> €</strong>
                 </td>
               </tr>
             </tbody>
@@ -130,7 +140,7 @@ if ($_SESSION['carrito'] <= 0) {
                 </button>
             </li>
             <li class="nav-item">
-                <a class="btn btn-success 	fa fa-credit-card " href="pago.php"> Realizar Compra</a>
+                <a class="btn btn-success fa fa-credit-card " href="pago.php"> Realizar Compra</a>
                 
             </li>
         </ul>
@@ -163,3 +173,9 @@ if ($_SESSION['carrito'] <= 0) {
             <!--Modal: modalConfirmDeleteCarrito-->
         </form>
 </div>
+
+<?php
+if(isset($_GET['stock'])){
+    echo '<script type="text/javascript">alert("No hay stock de '.$_GET['stock'].'")</script>';
+}
+?>

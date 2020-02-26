@@ -180,5 +180,64 @@ class ControladorProducto {
         $bd->cerrarBD();
         return $estado;
     }
-  
+
+    public function buscarStock($id){ 
+        $bd = ControladorBD::getControlador();
+        $bd->abrirBD();
+        $consulta = "SELECT stock FROM producto WHERE id = :id";
+        $parametros = array(':id' => $id);
+        $res = $bd->consultarBD($consulta,$parametros);
+        $filas=$res->fetchAll(PDO::FETCH_OBJ);
+        if (count($filas) > 0) {
+            foreach ($filas as $a) {
+                $stockReal = $a->stock;
+                // Lo añadimos
+            }
+            $bd->cerrarBD();
+            return $stockReal;
+        }else{
+            return null;
+        }    
+    }
+
+    public function actualizarStock($id, $cantidad){
+        $bd = ControladorBD::getControlador();
+        $bd->abrirBD();
+        $consulta = "UPDATE producto SET stock=stock-:cantidad WHERE id=:id";
+        $parametros = array(':id'=>$id,':cantidad'=>$cantidad);
+        $estado = $bd->actualizarBD($consulta,$parametros);
+        $bd->cerrarBD();
+        return $estado;
+    }
+    
+    public function generarFactura($id){
+        $bd = ControladorBD::getControlador();
+        $bd->abrirBD();
+        $consulta = "INSERT INTO venta (idFactura) VALUES (:idFactura)";
+        
+        $parametros= array(':idFactura'=>$id);
+            $estado = $bd->actualizarBD($consulta,$parametros);
+            $bd->cerrarBD();
+            return $estado;
+    }
+
+
+    public function buscarFactura($id){ 
+        $bd = ControladorBD::getControlador();
+        $bd->abrirBD();
+        $consulta = "SELECT * FROM venta WHERE idFactura = :id";
+        $parametros = array(':id' => $id);
+        $res = $bd->consultarBD($consulta,$parametros);
+        $filas=$res->fetchAll(PDO::FETCH_OBJ);
+        if (count($filas) > 0) {
+            foreach ($filas as $a) {
+                $factura = $a->idFactura.'-'.$a->id;
+                // Lo añadimos
+            }
+            $bd->cerrarBD();
+            return $factura;
+        }else{
+            return null;
+        }    
+    }
 }

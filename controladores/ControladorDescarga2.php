@@ -147,5 +147,25 @@ class ControladorDescarga2{
         $pdf->output('listado.pdf');
     
     }
+
+    public function descargarFacturaPDF(){
+        session_start();
+        $sal ='<h2 class="pull-left">Fichas de los productos</h2>';
+        $sal='<div border="1" style="width:60%;">';   
+        $sal.='<h2 style="text-align:center">Game Over</h2>';
+        $sal.='<h4 style="text-align:center">PEDIDO Nº :</h4>';
+
+        $sal.='<h6 style="text-align:center">Iva :</h6>';
+        $sal.='<h4 style="text-align:center">Total </h4>:';
+        $sal.='<p>Para obtener más información, consulta la Política de cambios y reembolsos y el derecho a cancelar tu suscripción en nuestro apartado de Condiciones de compra .</p>';
+        $sal.='<p>Este ticket es imprescindible para cualquier cambio o devolución. Puedes presentarlo en tu dispositivo móvil o imprimirlo.</p>';
+        $sal.='</div>';
+        //https://github.com/spipu/html2pdf/blob/master/doc/basic.md
+        $pdf=new HTML2PDF('L','A4','es','true','UTF-8');
+        $pdf->writeHTML($sal);
+        $pdf->output('listado.pdf');
+
+    }  
+
 }
 

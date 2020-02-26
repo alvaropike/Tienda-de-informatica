@@ -163,3 +163,9 @@ toastr.options = {
         toastr.success('Producto añadido correctamente');
     });
 </script>
+
+<?php
+if(isset($_GET['stock'])){
+    echo '<script type="text/javascript">alert("No hay stock de '.$_GET['stock'].'")</script>';
+}
+?>

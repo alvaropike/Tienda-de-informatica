@@ -16,6 +16,32 @@ require_once VIEW_PATH.'navbar.php';
 
 </style>
 </head>
+<script>
+function checkdate(){
+  var fecha = document.getElementById('cc-expiration').value;
+  var fechas = fecha.split('/');
+  var actyear = new Date().getFullYear();
+  var actmonth = new Date().getMonth()+1;
+  var anio = parseInt(fechas[1]);
+  var mes = parseInt(fechas[0]);
+
+if(anio > actyear){
+  return true;
+}
+  if(anio === actyear){
+
+    if(mes >= actmonth){
+      return true;
+    }else{
+      alert("No puedes comprar con una tarjeta caducada");
+      return false;
+    }
+  }else{
+    alert("No puedes comprar con una tarjeta caducada");
+    return false;
+  }
+}
+</script>
 <div class="checkout-wrap">
   <ul class="checkout-bar">
     <li class="visited first"><a href="#">Login</a></li>
@@ -32,9 +58,24 @@ require_once VIEW_PATH.'navbar.php';
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Resumen</span>
       </h4>
-      <ul class="list-group mb-3">
+      <ul class="list-group mb-3"></ul>
       <?php
-          $carrito = $_SESSION['carrito'];
+      $carrito = $_SESSION['carrito'];
+        $totalIVA=0;
+        $total=0;
+        $IVA=0;
+        $descuentoTotal =0;
+        foreach ($carrito as $producto) {
+            $precio=$producto->getCantidad() * $producto->getPrecio();  
+            $IVA=$IVA+($precio-($precio/1.21));
+            $total=$total+($precio/1.21);    
+            $totalIVA=$total+$IVA;
+            if($producto->getDescuento() >0){
+              $descuentoTotal = $descuentoTotal+$producto->getPrecio()*$producto->getCantidad()*$producto->getDescuento()/100;
+          }
+        }
+
+          
               for ($i = 0; $i < sizeof($carrito); $i++) {
                   $producto = $carrito[$i];
         ?>
@@ -42,34 +83,23 @@ require_once VIEW_PATH.'navbar.php';
           <div>
           <img class='pic-2' src='../imagenes/productos/<?=$producto->getImagen()?>' width="50px" alt='primera'> <?=$producto->getNombre()?>
           </div>
-          <span class="text-muted"><?=$producto->getCantidad() * $producto->getPrecio()?> €</span>
+          <span class="text-muted"><?=$producto->getCantidad() * $producto->getPrecio()-$producto->getPrecio()*$producto->getDescuento()/100?> €</span>
         </li>
         <?php } ?>
-        <?php
-        $totalIVA=0;
-        $total=0;
-        $IVA=0;
-        foreach ($carrito as $producto) {
-            $precio=$producto->getCantidad() * $producto->getPrecio();  
-            $IVA=$IVA+($precio-($precio/1.21));
-            $total=$total+($precio/1.21);    
-            $totalIVA=$total+$IVA;
-        }
-    ?>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total</span>
-          <strong><?=(round($totalIVA,2))?> €</strong>
+          <strong><?=(round($totalIVA,2)-$descuentoTotal)?> €</strong>
         </li>
       </ul>
     </div>
 
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Dirección de Envio</h4>
-      <form class="needs-validation" novalidate>
+      <form action="facturacion.php" onsubmit="return checkdate()" method="post" class="form-horizontal">
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="firstName">Nombre</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <input type="text" class="form-control" name="nombre" id="firstName" placeholder="" value="" required>
             <div class="invalid-feedback">
               Nombre Requerido
             </div>
@@ -77,7 +107,7 @@ require_once VIEW_PATH.'navbar.php';
 
           <div class="col-md-5 mb-3">
             <label for="lastName">Apellidos</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <input type="text" class="form-control" name="apellido" id="lastName" placeholder="" value="" required>
             <div class="invalid-feedback">
               Apellido Requerido
             </div>
@@ -87,7 +117,7 @@ require_once VIEW_PATH.'navbar.php';
         <div class="row">
         <div class="col-md-10 mb-3">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="tu@ejemplo.com" required>
+          <input type="email" class="form-control" name="email" id="email" placeholder="tu@ejemplo.com" required>
           <div class="invalid-feedback">
             Porfavor introduce un email valido.
           </div>
@@ -97,7 +127,7 @@ require_once VIEW_PATH.'navbar.php';
         <div class="row">
         <div class="col-md-10 mb-3">
           <label for="address">Direccion 1</label>
-          <input type="text" class="form-control" id="address" placeholder="Calle Ancha 23" required>
+          <input type="text" class="form-control" name="direccion" id="address" placeholder="Calle Ancha 23" required>
           <div class="invalid-feedback">
             Porfavor, introduce tu direccion de envio
           </div>
@@ -179,7 +209,7 @@ require_once VIEW_PATH.'navbar.php';
           </div>
           <div class="col-md-5 mb-3">
             <label for="cc-number">Número de la tarjeta de credito</label>
-            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+            <input type="text" class="form-control" id="cc-number" pattern="([0-9]{16})" title="tiene que contener 16 digitos" placeholder="" required>
             <div class="invalid-feedback">
               Numero de tarjeta de credito Requerido
             </div>
@@ -188,14 +218,14 @@ require_once VIEW_PATH.'navbar.php';
         <div class="row">
           <div class="col-md-3 mb-3">
             <label for="cc-expiration">Caducidad</label>
-            <input type="text" class="form-control" id="cc-expiration" placeholder="01/21" required>
+            <input type="text" class="form-control" id="cc-expiration" pattern="([0-9]{2}/[0-9]{4})" title="Ejemplo 01/2021"  placeholder="01/2021" required>
             <div class="invalid-feedback">
               Fecha de caducidad Requerida
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <label for="cc-cvv">CVV</label>
-            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            <input type="text" class="form-control" id="cc-cvv" pattern=([0-9]{3}) title="CVV son 3 digitos" placeholder="" required>
             <div class="invalid-feedback">
               Codigo de seguridad valido Requerido
             </div>

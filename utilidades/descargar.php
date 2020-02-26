@@ -14,4 +14,5 @@ switch ($opcion) {
     case 'PDFAlumno':
         $fichero->descargarPDFAlumno($id);
         break;
+
 }
