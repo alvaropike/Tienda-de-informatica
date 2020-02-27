@@ -33,11 +33,11 @@ require_once CONTROLLER_PATH."ControladorProducto.php";
 
 <div class="checkout-wrap no-print">
   <ul class="checkout-bar">
-    <li class="visited first"><a href="#">Login</a></li>
-    <li class="previous visited">Productos</li>
+    <li class="visited">Login</li>
+    <li class="visited first">Productos</li>
     <li class="previous visited">Pago y Envio</li> 
     <li class="active">Facturación</li>   
-    <li class="">Complete</li>      
+    <li></li>      
   </ul>
   <br>
 </div>
@@ -59,9 +59,7 @@ require_once CONTROLLER_PATH."ControladorProducto.php";
                     </div>
                     <div class="col company-details">
                         <h2 class="name">
-                            <a target="_blank" href="https://lobianijs.com">
-                            InforShop
-                            </a>
+                            <a>InforShop</a>
                         </h2>
                         <div>Paseo San Gregorio 24</div>
                         <div>684 09 09 29</div>
@@ -156,6 +154,18 @@ require_once CONTROLLER_PATH."ControladorProducto.php";
 
 <?php
 
+$_SESSION['carritoBackup']=$_SESSION['carrito'];
 unset($_SESSION['carrito']);
+
+$_SESSION['nombre']=$_REQUEST['nombre'];
+$_SESSION['apellido']=$_REQUEST['apellido'];
+$_SESSION['direccion']=$_REQUEST['direccion'];
+$_SESSION['emailfac']=$_REQUEST['email'];
+$_SESSION['factura']=$factura;
+$_SESSION['total']=$total;
+$_SESSION['IVA']=$IVA;
+$_SESSION['descuentoTotal']=$descuentoTotal;
+$_SESSION['totalIVA']=$totalIVA;
+$_SESSION['TOTAL']=(round($totalIVA,2)-$descuentoTotal);
 
 ?>

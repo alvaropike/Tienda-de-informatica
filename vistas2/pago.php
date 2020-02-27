@@ -47,8 +47,7 @@ if(anio > actyear){
     <li class="visited first"><a href="#">Login</a></li>
     <li class="previous visited">Productos</li>
     <li class="active">Pago y Envio</li> 
-    <li class="">Facturación</li>   
-    <li class="">Complete</li>      
+    <li class="">Facturación</li>        
   </ul>
   <br>
 </div>
@@ -202,7 +201,7 @@ if(anio > actyear){
           <div class="col-md-5 mb-3">
             <label for="cc-name">Tarjeta de credito</label>
             <input type="text" class="form-control" id="cc-name" placeholder="" required>
-            <small class="text-muted">Full name as displayed on card</small>
+            <small class="text-muted">Todo el nombre que aparezca en la tarjeta</small>
             <div class="invalid-feedback">
               Nombre de la tarjeta Requerido
             </div>

@@ -82,12 +82,12 @@
   ul.checkout-bar li:nth-child(4):before {
     content: "4";
   }
-  ul.checkout-bar li:nth-child(5):before {
+   /* ul.checkout-bar li:nth-child(5):before {
     content: "5";
-  }
-  ul.checkout-bar li:nth-child(6):before {
+  } 
+   ul.checkout-bar li:nth-child(6):before {
     content: "6";
-  }
+  }  */
   ul.checkout-bar a {
     color: #57aed1;
     font-size: 16px;

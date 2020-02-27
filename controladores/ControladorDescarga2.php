@@ -4,7 +4,12 @@ require_once CONTROLLER_PATH . "ControladorProducto.php";
 require_once MODEL_PATH . "usuario.php";
 require_once VENDOR_PATH . "autoload.php";
 require MODEL_PATH.'Producto.php';
+
+
+
 use Spipu\Html2Pdf\HTML2PDF;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
 class ControladorDescarga2{
     // Configuración del servidor
@@ -147,25 +152,83 @@ class ControladorDescarga2{
         $pdf->output('listado.pdf');
     
     }
-
+ 
     public function descargarFacturaPDF(){
         session_start();
-        $sal ='<h2 class="pull-left">Fichas de los productos</h2>';
-        $sal='<div border="1" style="width:60%;">';   
-        $sal.='<h2 style="text-align:center">Game Over</h2>';
-        $sal.='<h4 style="text-align:center">PEDIDO Nº :</h4>';
+        $cv = ControladorProducto::getControlador();
+        $carrito = $_SESSION['carritoBackup'];
+        $sal = "<h2>Factura</h2>";
+        
+        $sal .= "<img src='https://s3.amazonaws.com/designmantic-logos/logos/2020/Jan/medium-4645-5e21d5ac477de.png'>";
+        $sal .= "<h2>Inforshop</h2>";
+        $sal .= "Paseo San Gregorio 24<br>";
+        $sal .= "684 09 09 29<br>";
+        $sal .= "compras@inforshop.com";
+        $sal .= "<h2>Factura Nº: ".$_SESSION['factura']." </h2>";
+        $date = new DateTime();
+        $sal .= "<h4>Fecha de compra: " . $date->format('d/m/Y') . "</h4>";
+        $sal .= "<h5>Facturado a: ".$_SESSION['nombre']." ".$_SESSION['apellido']."</h5>";
+        $sal .= "<h5>Email: ".$_SESSION['emailfac']."</h5>";
+        $sal .= "<h4>Datos de Envío:</h4>";
+        $sal .= "<h5>Direccion: " . $_SESSION['direccion'] . "</h5>";
+        $sal .= "<h4>Productos</h4>";
+        $sal .= "<table>
+                <thead>
+                       <tr><td><b>Item</b></td><td><b>Precio (PVP)</b></td><td><b>Cantidad</b></td><td><b>Total</b></td>
+                        </tr>
+                        </thead>
+                        <tbody>";
 
-        $sal.='<h6 style="text-align:center">Iva :</h6>';
-        $sal.='<h4 style="text-align:center">Total </h4>:';
-        $sal.='<p>Para obtener más información, consulta la Política de cambios y reembolsos y el derecho a cancelar tu suscripción en nuestro apartado de Condiciones de compra .</p>';
-        $sal.='<p>Este ticket es imprescindible para cualquier cambio o devolución. Puedes presentarlo en tu dispositivo móvil o imprimirlo.</p>';
-        $sal.='</div>';
-        //https://github.com/spipu/html2pdf/blob/master/doc/basic.md
-        $pdf=new HTML2PDF('L','A4','es','true','UTF-8');
+         for ($i = 0; $i < sizeof($carrito); $i++) {
+            $producto = $carrito[$i];
+            $sal .= "<tr>";
+            $sal .= "<td>" . $producto->getNombre(). "</td>";
+            $sal .= "<td>" . $producto->getPrecio() . " €</td>";
+            $sal .= "<td>" . $producto->getCantidad() . "</td>";
+            $sal .= "<td>" . ($producto->getPrecio() * $producto->getCantidad()) . " €</td>";
+            $sal .= "</tr>";
+        }
+        $sal .= "<tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total sin IVA:</strong></td>
+                            <td>".round($_SESSION['total'],2)."€</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>I.V.A</strong></td>
+                            <td>".round($_SESSION['IVA'],2) ."€</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Descuento</strong></td>
+                            <td>".round($_SESSION['descuentoTotal'],2) ."€</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong>".$_SESSION['TOTAL'] ." €</strong></td>
+                        </tr>";
+
+
+        $sal .= " </tbody>
+                    </table>";
+
+
+        $pdf = new HTML2PDF('P', 'A4', 'es', 'true', 'UTF-8');
         $pdf->writeHTML($sal);
-        $pdf->output('listado.pdf');
+        $pdf->output('factura.pdf');
+
 
     }  
 
 }
 
+// $sal='<td class="no"></td>';
+// $sal='<td class="text-left"><h3><img class="pic-2" src="../imagenes/productos/'.$producto->getImagen().'" width="50px" alt="primera"> '.$producto->getNombre().'</h3></td>';
+// $sal='<td class="unit">'.$producto->getPrecio().' €</td>';
+// $sal='<td class="qty">'.$producto->getCantidad().'</td>';
+// $sal='<td class="total">'.$producto->getCantidad() * $producto->getPrecio().' €</td>';
